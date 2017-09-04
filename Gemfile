@@ -12,6 +12,10 @@ end
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
+# Bootstrap-sass
+gem 'bootstrap-sass'
+# Simple-form
+gem 'simple_form'
 
 
 

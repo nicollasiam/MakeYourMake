@@ -16,6 +16,8 @@ gem 'pg', '~> 0.18'
 gem 'bootstrap-sass'
 # Simple-form
 gem 'simple_form'
+# Devise for authentication
+gem 'devise'
 
 
 

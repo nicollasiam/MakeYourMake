@@ -3,12 +3,15 @@ class MakesController < ApplicationController
 
 
   def index
+    @makes = Make.all
   end
 
   def show
+    @make = Make.find(params[:id])
   end
 
   def edit
+    @make = Make.find(params[:id])
   end
 
   def new
@@ -18,6 +21,7 @@ class MakesController < ApplicationController
 
   def create
     make = Make.new(make_params)
+    make.likes_count = 0
     make.user = current_user
 
     if make.save!
@@ -28,6 +32,8 @@ class MakesController < ApplicationController
         image = Image.new(image_url: params['make']['images_attributes'].first[1]['image_url'].path.split('/').last)
         image.make = make
         image.save!
+
+        raise
       end
 
       redirect_to makes_path

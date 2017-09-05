@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+  namespace :profile do
+    get 'makes/index'
+  end
+
+  namespace :profile do
+    get 'makes/show'
+  end
+
+  namespace :profile do
+    get 'makes/edit'
+  end
+
+  namespace :profile do
+    get 'makes/new'
+  end
+
   root to: 'makes#index'
 
 

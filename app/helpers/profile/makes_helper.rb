@@ -1,0 +1,2 @@
+module Profile::MakesHelper
+end

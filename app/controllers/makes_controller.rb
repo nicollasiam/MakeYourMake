@@ -16,7 +16,6 @@ class MakesController < ApplicationController
 
   def new
     @make = Make.new
-    @image = Image.new
   end
 
   def create
@@ -32,6 +31,13 @@ class MakesController < ApplicationController
   end
 
   def update
+    make = Make.find(params[:id])
+
+    if make.update(make_params)
+      redirect_to make_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -41,6 +47,6 @@ class MakesController < ApplicationController
   private
 
   def make_params
-    params.require(:make).permit(:name, :description, :likes_count, :public, images_attributes: [:id, :image_url, :image_url_cache, :_destroy])
+    params.require(:make).permit(:name, :description, :likes_count, :public)
   end
 end

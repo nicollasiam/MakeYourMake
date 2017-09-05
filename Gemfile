@@ -20,6 +20,11 @@ gem 'simple_form'
 gem 'devise'
 # Carrierwave for images upload
 gem 'carrierwave', '~> 0.11.2'
+# Figaro for security reasons
+gem 'figaro'
+
+# Cloudnary gem ------- Delete after
+gem 'cloudinary'
 
 
 ######################################################

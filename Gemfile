@@ -18,12 +18,17 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 # Devise for authentication
 gem 'devise'
+
+# Faker for db
+gem 'faker'
+
 # Carrierwave for images upload
 gem 'carrierwave', '~> 1.0'
 # Figaro for security reasons
 gem 'figaro'
 # Cocoon for nested forms
 gem 'cocoon'
+
 
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+
   root to: 'makes#index'
 
 
-
+  resources :images, only: [:new, :create]
   resources :makes
 
   devise_for :users

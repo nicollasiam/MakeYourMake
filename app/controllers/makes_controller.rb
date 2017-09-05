@@ -3,7 +3,7 @@ class MakesController < ApplicationController
 
 
   def index
-    @makes = Make.all
+    @makes = policy_scope(Make)
   end
 
   def show
@@ -16,6 +16,7 @@ class MakesController < ApplicationController
 
   def new
     @make = Make.new
+    authorize @make
     @image = Image.new
   end
 
@@ -23,7 +24,7 @@ class MakesController < ApplicationController
     make = Make.new(make_params)
     make.likes_count = 0
     make.user = current_user
-
+    authorize make
     if make.save!
       redirect_to makes_path
     else
@@ -41,6 +42,7 @@ class MakesController < ApplicationController
   private
 
   def make_params
-    params.require(:make).permit(:name, :description, :likes_count, :public, images_attributes: [:id, :image_url, :image_url_cache, :_destroy])
+    params.require(:make).permit(:name, :description, :likes_count, :public,
+    images_attributes: [:id, :image_url, :image_url_cache, :_destroy])
   end
 end

@@ -18,6 +18,9 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 # Devise for authentication
 gem 'devise'
+# Pundit fot authorization
+gem 'pundit'
+
 
 # Faker for db
 gem 'faker'

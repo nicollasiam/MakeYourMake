@@ -56,7 +56,6 @@ GEM
     cloudinary (1.8.1)
       aws_cf_signer
       rest-client
-    cocoon (1.2.10)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -211,7 +210,6 @@ DEPENDENCIES
   bootstrap-sass
   carrierwave (~> 1.0)
   cloudinary
-  cocoon
   coffee-rails (~> 4.2)
   devise
   faker

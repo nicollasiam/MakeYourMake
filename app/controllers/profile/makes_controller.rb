@@ -1,5 +1,5 @@
 class Profile::MakesController < ApplicationController
-  before_action find_make, only: [:show, :edit, :update, :destroy]
+  before_action :find_make, only: [:show, :edit, :update, :destroy]
 
   def index
     @makes = Make.all.where(user: current_user)

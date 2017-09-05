@@ -18,7 +18,6 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 # Devise for authentication
 gem 'devise'
-<<<<<<< HEAD
 # Pundit fot authorization
 gem 'pundit'
 # Carrierwave for images upload

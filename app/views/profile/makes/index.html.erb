@@ -1,2 +1,3 @@
-<h1>Profile::Makes#index</h1>
-<p>Find me in app/views/profile/makes/index.html.erb</p>
+<% @makes.each do |make| %>
+  <h2><%= make.name %></h2>
+<% end %>

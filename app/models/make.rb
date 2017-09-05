@@ -9,4 +9,11 @@ class Make < ApplicationRecord
   # to load images on make creating.
   accepts_nested_attributes_for :images, reject_if: :all_blank, allow_destroy: true
 
+  validates :name, :description, presence: true
+
 end
+
+
+
+
+

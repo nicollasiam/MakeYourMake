@@ -3,7 +3,7 @@ class MakesController < ApplicationController
 
 
   def index
-    @makes = Make.all
+    @makes = policy_scope(Make)
   end
 
   def show

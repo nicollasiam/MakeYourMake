@@ -18,6 +18,8 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 # Devise for authentication
 gem 'devise'
+# Faker for db
+gem 'faker'
 
 
 

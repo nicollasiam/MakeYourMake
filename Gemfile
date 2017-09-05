@@ -22,6 +22,8 @@ gem 'devise'
 gem 'carrierwave', '~> 0.11.2'
 # Figaro for security reasons
 gem 'figaro'
+# Cocoon for nested forms
+gem 'cocoon'
 
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'

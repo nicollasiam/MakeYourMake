@@ -14,6 +14,7 @@ class MakesController < ApplicationController
   end
 
   def create
+    raise
   end
 
   def update

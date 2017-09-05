@@ -58,6 +58,7 @@ GEM
     cloudinary (1.8.1)
       aws_cf_signer
       rest-client
+    cocoon (1.2.10)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -202,6 +203,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 0.11.2)
   cloudinary
+  cocoon
   coffee-rails (~> 4.2)
   devise
   figaro
@@ -219,4 +221,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.3
+   1.15.4

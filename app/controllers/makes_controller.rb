@@ -27,6 +27,6 @@ class MakesController < ApplicationController
   private
 
   def make_params
-    params.require(:make).permit(:name, :description, :likes_count, :public)
+    params.require(:make).permit(:name, :description, :likes_count, :public, images_attributes: [:id, :image_url, :image_url_cache, :_destroy])
   end
 end

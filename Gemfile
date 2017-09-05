@@ -19,7 +19,7 @@ gem 'simple_form'
 # Devise for authentication
 gem 'devise'
 # Carrierwave for images upload
-gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 1.0'
 # Figaro for security reasons
 gem 'figaro'
 # Cocoon for nested forms

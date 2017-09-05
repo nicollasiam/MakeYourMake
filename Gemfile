@@ -20,12 +20,18 @@ gem 'simple_form'
 gem 'devise'
 # Pundit fot authorization
 gem 'pundit'
+
+
+# Faker for db
+gem 'faker'
+
 # Carrierwave for images upload
 gem 'carrierwave', '~> 1.0'
 # Figaro for security reasons
 gem 'figaro'
 # Cocoon for nested forms
 gem 'cocoon'
+
 
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'

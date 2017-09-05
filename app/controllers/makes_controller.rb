@@ -14,6 +14,23 @@ class MakesController < ApplicationController
   end
 
   def create
+    make = Make.new(make_params)
+
+    if make.save!
+      # params['make']['images_attributes'].first[1]['image_url']
+      # Descobrir como pegar a url remota
+      # provavelmente: params['make']['images_attributes'].first[1]['image_url'].split('/').last
+      image = Image.new(image_url: params['make']['images_attributes'].first[1]['image_url'].split('/').last)
+      image.make = make
+      image.save!
+
+      redirect_to makes_path
+    else
+      render :new
+    end
+
+
+
     raise
   end
 

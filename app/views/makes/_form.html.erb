@@ -3,11 +3,15 @@
   <%= f.input :description %>
   <%= f.input :public %>
 
-  <%= f.simple_fields_for :images do |image| %>
-    <%= render 'image_fields', f: image %>
-  <% end %>
+  <div id="goals">
+    <%= f.simple_fields_for :images do |image| %>
+      <%= render 'image_fields', f: image %>
+    <% end %>
+  </div>
 
-  <%= link_to_add_association 'add image', f, :images  %>
+  <div class="links">
+    <%= link_to_add_association 'add image', f, :images  %>
+  </div>
 
   <%= f.submit %>
 <% end %>

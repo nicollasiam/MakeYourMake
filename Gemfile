@@ -30,7 +30,7 @@ gem 'carrierwave', '~> 1.0'
 # Figaro for security reasons
 gem 'figaro'
 # Cocoon for nested forms
-gem 'cocoon'
+#gem 'cocoon'
 
 
 # Cloudnary gem ------- Delete after

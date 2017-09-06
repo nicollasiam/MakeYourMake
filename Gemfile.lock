@@ -88,6 +88,8 @@ GEM
       thor (~> 0.14)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (5.0.2)
@@ -257,6 +259,7 @@ DEPENDENCIES
   devise
   faker
   figaro
+  font-awesome-sass
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.18)

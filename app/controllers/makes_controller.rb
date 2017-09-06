@@ -8,5 +8,6 @@ class MakesController < ApplicationController
 
   def show
     @make = Make.find(params[:id])
+    authorize @make
   end
 end

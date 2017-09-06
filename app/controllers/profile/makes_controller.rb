@@ -13,6 +13,7 @@ class Profile::MakesController < ApplicationController
 
   def new
     @make = Make.new
+    authorize @make
   end
 
   def create

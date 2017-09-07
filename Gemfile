@@ -20,8 +20,6 @@ gem 'simple_form'
 gem 'devise'
 # Pundit fot authorization
 gem 'pundit'
-# Font Awesome
-gem 'font-awesome-sass', '~> 4.7.0'
 
 
 # Faker for db

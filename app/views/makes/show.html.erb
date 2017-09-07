@@ -1,3 +1,9 @@
 <h1><%= @make.name %></h1>
 
+<% if @make.images %>
+  <% @make.images.each do |image| %>
+    <%= cl_image_tag image.image_url %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Add Image', new_make_image_path(@make) %>

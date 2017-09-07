@@ -34,9 +34,16 @@ gem 'figaro'
 # Cocoon for nested forms
 #gem 'cocoon'
 
+# Railsadmin for admin interface
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
 
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'
+
+# Font-awesome for icons
+gem 'font-awesome-sass'
 
 
 ######################################################

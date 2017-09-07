@@ -1,5 +1,5 @@
 <%= simple_form_for([@make, @image]) do |f| %>
-  <%= f.file_field :image_url %>
+  <%= f.file_field :image_url, error: 'Deve ser menor que 500kb' %>
   <%= f.input :image_url_cache, as: :hidden %>
 
   <%= f.submit %>

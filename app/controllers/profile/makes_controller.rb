@@ -21,6 +21,7 @@ class Profile::MakesController < ApplicationController
     make.user = current_user
 
     if make.save!
+      MakeMailer.creation_confirmation(@make).deliver_now
       redirect_to make_path
     else
       render :new

@@ -1,13 +1,22 @@
 class ImagesController < ApplicationController
   def new
-    @make = Make.find(params[:make_id])
-    @image = Image.new
+    if make.user == current_user
+      @make = Make.find(params[:make_id])
+      @image = Image.new
+      authorize @image
+    else
+      # TODO: Redirect to 401 page (unauthorized)
+    end
   end
 
   def create
-    make = Make.find(params[:make_id])
-    image = Image.new(image_params)
-    image.make = make
+    if make.user == current_user
+      make = Make.find(params[:make_id])
+      image = Image.new(image_params)
+      image.make = make
+    else
+      # TODO: Redirect to 401 page (unauthorized)
+    end
   end
 
 

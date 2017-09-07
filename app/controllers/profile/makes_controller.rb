@@ -18,6 +18,8 @@ class Profile::MakesController < ApplicationController
     make.likes_count = 0
     make.user = current_user
 
+    # TODO: Criar Make_type e associar à make.
+
     if make.save!
       MakeMailer.creation_confirmation(@make).deliver_now
       redirect_to make_path

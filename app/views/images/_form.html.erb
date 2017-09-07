@@ -1,4 +1,4 @@
-<%= simple_form_for(@image, @make, url: make_images_path, method: :post) do |f| %>
+<%= simple_form_for(@make, @image) do |f| %>
   <%= f.input :image_url %>
   <%= f.input :image_url_cache, as: :hidden %>
 <% end %>

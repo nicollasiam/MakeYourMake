@@ -5,9 +5,6 @@ class Profile::MakesController < ApplicationController
     @makes = Make.all.where(user: current_user)
   end
 
-  def show
-  end
-
   def edit
   end
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'makes#index'
 
   namespace :profile do
-    resources :makes
+    resources :makes, except: :show
   end
 
   resources :makes, only: [:index, :show]

@@ -1,1 +1,6 @@
 <h1><%= @make.name %></h1>
+
+<%= simple_form_for([@make, @imgae]) do |f| %>
+  <%= f.input :image_url %>
+  <%= f.input :image_url_cache, as: :hidden %>
+<% end %>

@@ -5,9 +5,6 @@ class Profile::MakesController < ApplicationController
     @makes = Make.all.where(user: current_user)
   end
 
-  def show
-  end
-
   def edit
   end
 
@@ -20,6 +17,8 @@ class Profile::MakesController < ApplicationController
     make = Make.new(make_params)
     make.likes_count = 0
     make.user = current_user
+
+    # TODO: Criar Make_type e associar à make.
 
     if make.save!
       MakeMailer.creation_confirmation(@make).deliver_now

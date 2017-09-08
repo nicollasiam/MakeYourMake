@@ -11,9 +11,11 @@ class Profile::MakesController < ApplicationController
   def new
     @make = Make.new
     authorize @make
+    @types = Type.all
   end
 
   def create
+    raise
     make = Make.new(make_params)
     make.likes_count = 0
     make.user = current_user

@@ -1,2 +1,22 @@
-<h1>Types#show</h1>
-<p>Find me in app/views/types/show.html.erb</p>
+<div class="makes-wrapper">
+  <div class="container">
+    <div class="row">
+      <% @makes.each do |make| %>
+        <div class="col-xs-12 col-md-6">
+          <div class="make-card">
+            <%= link_to make_path(make) do %>
+              <%= cl_image_tag make.images.first.image_url %>
+            <% end %>
+            <div class="make-content flexbox">
+              <div class="make-content-text">
+                <h3><%= make.name %></h3>
+                <p><%= make.user.artistic_name %></p>
+              </div>
+              <div class="fa fa-heart"></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

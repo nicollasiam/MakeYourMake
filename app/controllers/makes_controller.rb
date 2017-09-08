@@ -3,7 +3,8 @@ class MakesController < ApplicationController
 
 
   def index
-    @makes = policy_scope(Make)
+    # @feautured_makes = policy_scope(Make).order(likes_count: :desc).limit(9)
+    @types = policy_scope(Type).sample(9)
   end
 
   def show

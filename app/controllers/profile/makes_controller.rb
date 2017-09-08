@@ -15,16 +15,20 @@ class Profile::MakesController < ApplicationController
   end
 
   def create
-    raise
     make = Make.new(make_params)
     make.likes_count = 0
     make.user = current_user
 
-    # TODO: Criar Make_type e associar à make.
+    # Cria Make_type e associar à make.
+    make_type = MakeType.new
+    make_type.type = Type.find(params[:make][:make_types])
+    make_type.make = make
+    make_type.save!
 
+    authorize(make)
     if make.save!
-      MakeMailer.creation_confirmation(@make).deliver_now
-      redirect_to make_path
+      # MakeMailer.creation_confirmation(@make).deliver_now
+      redirect_to make_path(make)
     else
       render :new
     end
@@ -48,7 +52,7 @@ class Profile::MakesController < ApplicationController
   private
 
   def make_params
-    params.require(:make).permit(:name, :description, :likes_count, :public)
+    params.require(:make).permit(:name, :description, :public)
   end
 
   def find_make

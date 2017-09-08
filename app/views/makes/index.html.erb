@@ -3,9 +3,9 @@
     <div class="row">
       <% @types.each do |type| %>
         <div class="col-xs-12 col-md-4">
-          <%= link_to '/makes/1' do %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5) 70%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
-              <div class="card-content text-center">
+          <%= link_to type_path(type) do %>
+            <div class="type-card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5) 70%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
+              <div class="type-card-content text-center">
                 <hr>
                 <h2><%= type.name %></h2>
               </div>

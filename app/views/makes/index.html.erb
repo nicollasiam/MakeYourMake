@@ -1,3 +1,18 @@
-<% @makes.each do |make| %>
-  <h2><%= link_to make.name, make_path(make) %></h2>
-<% end %>
+<div class="types-wrapper">
+  <div class="container">
+    <div class="row">
+      <% @types.each do |type| %>
+        <div class="col-xs-12 col-md-4">
+          <%= link_to type_path(type) do %>
+            <div class="type-card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5) 70%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
+              <div class="type-card-content text-center">
+                <hr>
+                <h2><%= type.name %></h2>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

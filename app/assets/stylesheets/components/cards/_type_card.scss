@@ -1,0 +1,20 @@
+.type-card {
+  position: relative;
+  height: 370px;
+  background-size: cover;
+  margin-top: 15px;
+  border-radius: 4px;
+  color: white;
+
+  .type-card-content {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+
+    hr {
+      border-color: #8F003A;
+      border-width: 2px;
+      width: 20%;
+    }
+  }
+}

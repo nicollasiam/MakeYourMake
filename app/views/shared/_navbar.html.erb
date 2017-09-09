@@ -50,9 +50,17 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o color-items" aria-hidden="true"></i> Entrar / Cadastrar <span class="caret color-items"></span></a>
           <ul class="dropdown-menu">
-            <li><button type="button" class="btn btn-danger">Cadastrar</button></li>
+            <li>
+              <%= link_to new_user_session_path do %>
+                <span class="glyphicon glyphicon-log-in color-items"></span> Entrar
+              <% end %>
+            </li>
             <li role="separator" class="divider"></li>
-            <button type="button" class="btn btn-danger">Entrar</button>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <span class="glyphicon glyphicon-user color-items"></span> Cadastrar
+              <% end %>
+            </li>
             <li role="separator" class="divider"></li>
             <button type="button" class="btn btn-primary">Entrar com o Facebook</button>
           </ul>

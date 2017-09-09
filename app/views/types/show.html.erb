@@ -10,10 +10,12 @@
             <% end %>
             <div class="make-content flexbox">
               <div class="make-content-text">
-                <h3><%= make.name %></h3>
+                <h4><%= make.name %></h4>
                 <p><%= make.user.artistic_name %></p>
               </div>
-              <div class="fa fa-heart"></div>
+              <%= link_to '#' do %>
+                <i class="fa fa-heart-o"></i>
+              <% end %>
             </div>
           </div>
         </div>

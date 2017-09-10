@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905210207) do
+ActiveRecord::Schema.define(version: 20170910134753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20170905210207) do
     t.datetime "updated_at", null: false
     t.string   "image_url"
     t.index ["make_id"], name: "index_images_on_make_id", using: :btree
+  end
+
+  create_table "liked_makes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "make_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_liked_makes_on_make_id", using: :btree
+    t.index ["user_id"], name: "index_liked_makes_on_user_id", using: :btree
   end
 
   create_table "make_types", force: :cascade do |t|
@@ -86,6 +95,8 @@ ActiveRecord::Schema.define(version: 20170905210207) do
   end
 
   add_foreign_key "images", "makes"
+  add_foreign_key "liked_makes", "makes"
+  add_foreign_key "liked_makes", "users"
   add_foreign_key "make_types", "makes"
   add_foreign_key "make_types", "types"
   add_foreign_key "makes", "users"

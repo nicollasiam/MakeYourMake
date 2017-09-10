@@ -16,7 +16,17 @@ class Profile::LikedMakesController < ApplicationController
   end
 
   def destroy
-    liked_make = LikedMake.find(params[:id])
+    make = Make.find(params[:id])
+    liked_make = nil
+
+    make.liked_makes.each do |liked|
+      if liked.user == current_user
+        liked_make = liked
+        break
+      end
+    end
+
+    authorize(liked_make)
     liked_make.destroy
   end
 end

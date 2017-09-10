@@ -4,6 +4,7 @@ class Make < ApplicationRecord
   has_many :make_types, dependent: :destroy
   has_many :types, through: :make_types, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :liked_makes, dependent: :destroy
 
   # This allows nested forms. We need it to be able
   # to load images on make creating.

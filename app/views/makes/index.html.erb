@@ -4,7 +4,7 @@
       <% @types.each do |type| %>
         <div class="col-xs-12 col-md-4">
           <%= link_to type_path(type) do %>
-            <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,0.74) 100%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
+            <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
               <div class="type-card-content text-center">
                 <hr>
                 <h2><%= type.name %></h2>

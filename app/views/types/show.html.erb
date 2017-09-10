@@ -16,7 +16,7 @@
                 <h4><%= make.name %></h4>
                 <p><%= make.user.artistic_name %></p>
               </div>
-              <%= link_to '#' do %>
+              <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
                 <i class="fa fa-heart-o"></i>
               <% end %>
             </div>

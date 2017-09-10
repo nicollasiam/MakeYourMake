@@ -5,6 +5,7 @@ class Profile::LikedMakesController < ApplicationController
 
   def create
     make = Make.find(params[:make_id])
+    puts "params: #{params}"
 
     liked_make = LikedMake.new
     liked_make.make = make

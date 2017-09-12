@@ -1,12 +1,12 @@
 class ImagesController < ApplicationController
   def new
     @make = Make.find(params[:make_id])
-
-    if @make.user == current_user
       @image = Image.new
       authorize @image
-    else
+
+    unless @make.user == current_user
       # TODO: Redirect to 401 page (unauthorized)
+      redirect_to make_path(@make)
     end
   end
 

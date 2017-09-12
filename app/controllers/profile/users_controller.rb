@@ -5,5 +5,8 @@ class Profile::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @makes = Make.where(["user_id = ?", @user.id])
+    @banner_makes = @makes.select do |make|
+      make.images.first.present?
+    end
   end
 end

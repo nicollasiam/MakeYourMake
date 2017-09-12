@@ -92,6 +92,8 @@ GEM
       railties (>= 3.2, < 5.2)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    friendly_id (5.2.1)
+      activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (5.0.2)
@@ -267,6 +269,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass
+  friendly_id
   jquery-rails
   letter_opener
   listen (~> 3.0.5)

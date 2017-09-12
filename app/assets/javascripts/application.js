@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+  $('#user_professional').on('change', function() {
+    if ($(this)[0].checked == true) {
+      $('#professional_inputs').slideDown();
+    }
+    else {
+      $('#professional_inputs').slideUp();
+    }
+  })
+})

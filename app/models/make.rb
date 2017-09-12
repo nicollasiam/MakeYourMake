@@ -1,4 +1,7 @@
 class Make < ApplicationRecord
+  include FriendlyId
+  friendly_id :name
+
   belongs_to :user
   has_many :images, inverse_of: :make, dependent: :destroy
   has_many :make_types, dependent: :destroy

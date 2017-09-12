@@ -18,7 +18,7 @@ class MakesController < ApplicationController
   end
 
   def show
-    @make = Make.find(params[:id])
+    @make = Make.friendly.find(params[:id])
     authorize @make
     @image = Image.new
   end

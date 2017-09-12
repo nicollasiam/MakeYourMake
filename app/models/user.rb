@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include FriendlyId
+  friendly_id :artistic_name
+
   after_create :send_welcome_email
 
   has_many :makes

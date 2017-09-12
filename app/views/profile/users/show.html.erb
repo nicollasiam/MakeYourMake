@@ -1,0 +1,51 @@
+<% if @banner_makes.present? %>
+  <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.first.images.first.image_url %>')">
+<% else %>
+  <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @makes.first.images.first.image_url %>')">
+<% end %>
+  <div class="banner-content">
+    <div id="mymodal" class="modal hidden">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Orçamento</h5>
+              <button type="button" class="close close-orçamento" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Enviar e-mail</button>
+              <button type="button" class="btn btn-secondary close-orçamento" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="banner-user-description">
+      <%= @user.artistic_name %>
+    </div>
+    <div class="btn btn-primary btn-user">
+      Peça seu orçamento
+    </div>
+  </div>
+</div>
+
+<div class="show-menu">
+  <ul>
+    <li>
+      Fotografias
+    </li>
+    <li>
+      Makes
+    </li>
+    <li>
+      Makes amadas
+    </li>
+  </ul>
+</div>
+
+<div class="user-photos">
+
+</div>

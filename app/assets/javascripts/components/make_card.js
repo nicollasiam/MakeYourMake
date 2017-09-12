@@ -25,6 +25,8 @@ $(document).ready(function() {
         element.on('click', unlikeMake);
       }
     });
+
+    return false;
   };
 
 
@@ -47,6 +49,8 @@ $(document).ready(function() {
         element.on('click', likeMake);
       }
     });
+
+    return false;
   };
 
 })

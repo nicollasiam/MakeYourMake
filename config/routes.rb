@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'makes#index'
 
   namespace :profile do
+    resources :users, only: :show
     resources :makes, except: :show
     resources :liked_makes, only: [:index, :create, :destroy]
   end

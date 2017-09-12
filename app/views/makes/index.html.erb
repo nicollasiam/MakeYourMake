@@ -1,5 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+      <form class="form-inline" action="#">
+        <input type="text" placeholder="Busque sua make do dia ou seu maquiador preferido" name="search_text" style="width: 300px">
+        <button type="submit">Procurar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<% if params[:search_text].present? %>
+  <div class="results-wrapper" style="background-color: white; box-shadow: 0 1px 1px 0 #d8d8d8; padding-bottom: 40px">
+    <div class="container">
+      <div class="row">
+        <!-- Found Makes. Load makes cards -->
+        <% if @makes.length > 0 %>
+          <h2 class="text-center" style="color: #777">Resultados para '<%= params[:search_text] %>'</h2>
+          <% @makes.each do |make| %>
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="make-card">
+                <%= link_to make_path(make) do %>
+                  <div class="parent-img">
+                    <div class="make-img" style="background-image: url('<%= cl_image_path make.images.first.image_url %>')"></div>
+                  </div>
+                <% end %>
+                <div class="make-content flexbox">
+                  <div class="make-content-text">
+                    <h4><%= make.name %></h4>
+                    <p><%= make.user.artistic_name %></p>
+                  </div>
+                  <% if make_is_liked_by_user?(make) %>
+                    <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
+                      <i class="fa fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
+                      <i class="fa fa-heart-o"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+        <!-- No makes found. Check if any user was found -->
+        <% elsif @users.length > 0 %>
+          <% @users.each do |user| %>
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="make-card">
+                <%= link_to makes_path do %>
+                  <div class="parent-img">
+                    <div class="make-img" style="background-image: url('<%= cl_image_path user.makes.first.images.first.image_url %>')"></div>
+                  </div>
+                <% end %>
+                <div class="make-content flexbox">
+                  <div class="make-content-text">
+                    <h4><%= user.artistic_name %></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+        <!-- Neither makes or users found -->
+        <% else %>
+          <h2 class="text-center" style="color: #777">Desculpe, não encontramos o que você deseja</h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
 <div class="types-wrapper">
   <div class="container">
+    <% if params[:search_text].present? %>
+      <h2 class="text-center" style="color: #777">Não encontrou o look que estava procurando?</h2>
+      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias ira te ajudar!</h4>
+    <% end %>
+
     <div class="row">
       <% @types.each do |type| %>
         <div class="col-xs-12 col-md-4">

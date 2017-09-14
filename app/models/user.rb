@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :makes
   has_many :reviews
   has_many :liked_makes
+  has_many :addresses
+  has_many :telephone_numbers
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

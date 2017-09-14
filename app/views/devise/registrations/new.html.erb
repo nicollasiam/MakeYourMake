@@ -11,16 +11,32 @@
     <%= f.input :password_confirmation, required: true %>
 
     <%= f.input :professional %>
-  </div>
 
-  <div id="professional_inputs" class="form-inputs" style="display: none">
-    <%= f.input :artistic_name %>
-    <%= f.input :telephone_number %>
-    <%= f.input :address %>
-  </div>
+    <div id="professional_inputs" style="display: none">
+      <%= f.input :artistic_name %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+      <%= f.simple_fields_for :address do |a| %>
+        <%= a.input :street %>
+        <%= a.input :number %>
+        <%= a.input :zip_code %>
+        <%= a.input :complement %>
+        <%= a.input :district %>
+        <%= a.input :city %>
+        <%= a.input :state %>
+        <%= a.input :public %>
+      <% end %>
+
+      <%= f.simple_fields_for :telephone_number do |t| %>
+        <%= t.input :ddd %>
+        <%= t.input :number %>
+        <%= t.input :public %>
+      <% end %>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
   </div>
 <% end %>
 

@@ -7,16 +7,20 @@ class User < ApplicationRecord
   has_many :makes
   has_many :reviews
   has_many :liked_makes
-  has_many :addresses
-  has_many :telephone_numbers
+  has_one :address
+  has_one :telephone_number
+
+  # We need this becouse addresses and telephone numbers are in another model
+  # They are not a column in users table
+  accepts_nested_attributes_for :address, :telephone_number
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :email, presence: true
-  validates :telephone_number, presence: { message: "O seu contato é importante para o usuário :)" }
-  validates :email, :telephone_number, uniqueness: true
+  validates :email, uniqueness: true
 
  private
 

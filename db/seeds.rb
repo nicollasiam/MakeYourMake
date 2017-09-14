@@ -22,19 +22,16 @@ types << Type.create!(name: "Delineado gatinho")
 # Admin User
 User.create!(email: 'admin@admin.com', first_name: 'Admin',
             last_name: 'Adminorino', artistic_name: 'Awesome Admin',
-            telephone_number: Faker::PhoneNumber.cell_phone, address: 'Admin has no address',
             password: 'admin123', admin: true, professional: false)
 
 # Professional User
 professional_user = User.create!(email: 'prof@prof.com', first_name: 'Professional',
                                 last_name: 'Professionalino', artistic_name: 'Awesome Professional',
-                                telephone_number: Faker::PhoneNumber.cell_phone, address: 'Professional great address',
                                 password: 'prof123', admin: false, professional: true)
 
 # Regular User
 User.create!(email: 'reg@reg.com', first_name: 'Regular',
             last_name: 'Regularino',
-            telephone_number: Faker::PhoneNumber.cell_phone,
             password: 'reg123')
 
 # Create 10 more professionals (11 total)
@@ -44,7 +41,6 @@ professionals << professional_user
 10.times do
   professionals << User.create!(email: Faker::Internet.email, first_name: Faker::Name.first_name,
                                 last_name: Faker::Name.last_name, artistic_name: Faker::Simpsons.character,
-                                telephone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.street_name,
                                 password: 'jamones', professional: true)
 end
 

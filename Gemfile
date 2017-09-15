@@ -33,6 +33,8 @@ gem 'figaro'
 gem 'font-awesome-sass'
 # Friendly URL
 gem 'friendly_id'
+# Email validation
+gem 'validates_email_format_of'
 
 # Railsadmin for admin interface
 gem 'remotipart', github: 'mshibuya/remotipart'

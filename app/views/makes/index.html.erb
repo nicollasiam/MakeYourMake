@@ -1,22 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 text-center">
-      <form class="form-inline" action="#">
-        <input type="text" placeholder="Busque sua make do dia ou seu maquiador preferido" name="search_text" style="width: 300px">
-        <button type="submit">Procurar</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-<% if params[:search_text].present? %>
+<% if params[:busca].present? %>
   <div class="results-wrapper" style="background-color: white; box-shadow: 0 1px 1px 0 #d8d8d8; padding-bottom: 40px">
     <div class="container">
       <div class="row">
         <!-- Found Makes. Load makes cards -->
         <% if @makes.length > 0 %>
-          <h2 class="text-center" style="color: #777">Resultados para '<%= params[:search_text] %>'</h2>
+          <h2 class="text-center" style="color: #777">Encontramos <%= @makes.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
           <% @makes.each do |make| %>
             <div class="col-xs-12 col-sm-6 col-lg-4">
               <div class="make-card">
@@ -46,6 +34,7 @@
 
         <!-- No makes found. Check if any user was found -->
         <% elsif @users.length > 0 %>
+          <h2 class="text-center" style="color: #777">Encontramos <%= @users.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
           <% @users.each do |user| %>
             <div class="col-xs-12 col-sm-6 col-lg-4">
               <div class="make-card">
@@ -76,7 +65,7 @@
 
 <div class="types-wrapper">
   <div class="container">
-    <% if params[:search_text].present? %>
+    <% if params[:busca].present? %>
       <h2 class="text-center" style="color: #777">Não encontrou o look que estava procurando?</h2>
       <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias ira te ajudar!</h4>
     <% end %>

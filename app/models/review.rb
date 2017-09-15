@@ -4,6 +4,14 @@ class Review < ApplicationRecord
 
   validates :content, :score,  presence: true
 
+  ###### Validations ######
+
+  # title
+    # Máximo de 20 caracteres
+
+  # content
+    # Presença
+
 end
 
 

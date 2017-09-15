@@ -1,7 +1,16 @@
 <h2>Sign up</h2>
 
+<% #raise %>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <% if f.error_notification %>
+    <div class="alert alert-danger">Por favor, corrija os erros abaixo:
+      <ul>
+        <% resource.errors.messages.each do |_, value| %>
+          <li><%= value.last %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-inputs">
     <%= f.input :first_name, required: true, autofocus: true %>
@@ -12,7 +21,11 @@
 
     <%= f.input :professional %>
 
-    <div id="professional_inputs" style="display: none">
+    <% if resource.professional %>
+      <div id="professional_inputs">
+    <% else %>
+      <div id="professional_inputs" style="display: none">
+    <% end %>
       <%= f.input :artistic_name %>
 
       <%= f.simple_fields_for :address do |a| %>

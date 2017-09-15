@@ -15,6 +15,14 @@ class Make < ApplicationRecord
 
   validates :name, :description, presence: true
 
+  ###### Validations ######
+
+  # name
+    # Presença
+    # Máximo de 40 caracteres
+
+  # description
+    # Presença
 end
 
 

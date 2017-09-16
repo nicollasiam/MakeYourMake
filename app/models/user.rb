@@ -98,10 +98,9 @@ class User < ApplicationRecord
     professional
   end
 
-  # def should_generate_new_friendly_id?
-  #   artistic_name_changed?
-  # end
-
+  def should_generate_new_friendly_id?
+    artistic_name_changed?
+  end
 end
 
 

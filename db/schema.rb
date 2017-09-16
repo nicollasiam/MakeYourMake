@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910134753) do
+ActiveRecord::Schema.define(version: 20170914112313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.integer  "number"
+    t.string   "zip_code"
+    t.string   "complement"
+    t.string   "district"
+    t.string   "city"
+    t.string   "state"
+    t.boolean  "public",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
+  end
 
   create_table "images", force: :cascade do |t|
     t.integer  "make_id"
@@ -64,6 +79,16 @@ ActiveRecord::Schema.define(version: 20170910134753) do
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
+  create_table "telephone_numbers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "ddd"
+    t.string   "number"
+    t.boolean  "public",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_telephone_numbers_on_user_id", using: :btree
+  end
+
   create_table "types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -86,14 +111,13 @@ ActiveRecord::Schema.define(version: 20170910134753) do
     t.string   "first_name",                             null: false
     t.string   "last_name",                              null: false
     t.string   "artistic_name"
-    t.string   "telephone_number"
-    t.string   "address"
     t.boolean  "admin",                  default: false, null: false
     t.boolean  "professional",           default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "images", "makes"
   add_foreign_key "liked_makes", "makes"
   add_foreign_key "liked_makes", "users"
@@ -102,4 +126,5 @@ ActiveRecord::Schema.define(version: 20170910134753) do
   add_foreign_key "makes", "users"
   add_foreign_key "reviews", "makes"
   add_foreign_key "reviews", "users"
+  add_foreign_key "telephone_numbers", "users"
 end

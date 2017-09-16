@@ -1,51 +1,78 @@
-<% if @banner_makes.present? %>
-  <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.first.images.first.image_url %>')">
-<% else %>
-  <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @makes.first.images.first.image_url %>')">
-<% end %>
-  <div class="banner-content">
-    <div id="mymodal" class="modal hidden">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Orçamento</h5>
-              <button type="button" class="close close-orçamento" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Enviar e-mail</button>
-              <button type="button" class="btn btn-secondary close-orçamento" data-dismiss="modal">Close</button>
+<div class="user-presentation">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div class="user-information">
+          <h3> <%= @user.artistic_name %></h3>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+      <% if @banner_makes.present? %>
+        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.first.images.first.image_url %>')">
+      <% else %>
+        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://design2web.com.br/blog/wp-content/uploads/2016/05/size_810_16_9_plus-size-modelo.jpg')">
+      <% end %>
+          <div class="banner-content">
+            <div class="banner-user-description">
+              <%= @user.artistic_name %>
             </div>
           </div>
         </div>
-    </div>
-    <div class="banner-user-description">
-      <%= @user.artistic_name %>
-    </div>
-    <div class="btn btn-primary btn-user">
-      Peça seu orçamento
+        <div class="user-contact">
+          <div>
+            <button type="button" class="btn btn-user" data-toggle="modal" data-target="#mymodal">
+              Peça seu orçamento
+            </button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-user btn-sharing">
+              Compartilha!
+            </button>
+          </div>
+          <div class="shared-buttons hidden">
+            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+  <% if @user.makes.first %>
 
-<div class="show-menu">
-  <ul>
-    <li>
-      Fotografias
-    </li>
-    <li>
-      Makes
-    </li>
-    <li>
-      Makes amadas
-    </li>
-  </ul>
-</div>
 
-<div class="user-photos">
+    <% if @user.makes.first.images.first %>
+    <div class="show-menu">
+      <p>
+        Makes
+      </p>
+    </div>
 
-</div>
+    <div class="user-makes container">
+      <div class="row">
+
+        <% @user.makes.each do |make| %>
+          <%= render :partial => "make_modal", :locals => {:make => make} %>
+          <% if make.images.first && make.public %>
+            <div class="col-xs-12 col-md-4">
+              <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+                <div class="user-make-card">
+                  <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>')">
+                    <div class="user-make-text">
+                      <%= make.name %>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+
+<%= render 'budget_modal' %>
+

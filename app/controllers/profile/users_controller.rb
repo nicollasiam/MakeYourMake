@@ -8,5 +8,6 @@ class Profile::UsersController < ApplicationController
     @banner_makes = @makes.select do |make|
       make.images.first.present?
     end
+    @review = Review.new
   end
 end

@@ -1,6 +1,6 @@
 class Make < ApplicationRecord
   include FriendlyId
-  friendly_id :name
+  friendly_id :name, use: :slugged
 
   belongs_to :user
   has_many :images, inverse_of: :make, dependent: :destroy
@@ -23,6 +23,12 @@ class Make < ApplicationRecord
 
   # description
     # Presença
+
+  private
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 end
 
 

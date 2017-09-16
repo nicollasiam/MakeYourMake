@@ -45,29 +45,44 @@
                 <h3><%= make.name %></h3>
                 <p><%= make.description %></p>
                 <h4>Criado por: <strong><%= make.user.artistic_name %></strong></h4>
+
                 <hr>
+
                 <% if make.types.first %>
                   <h5><strong>Veja makes parecidas</strong></h5>
-                  <div class="row">
-                    <% typ = make.types.first %>
-                    <% typ.make_types.each_with_index do |make_type, index| %>
-                      <% a_make = make_type.make  %>
-                      <% if index > 2 %>
-                        <% next %>
-                      <% end %>
-                      <div class="col-xs-4">
-                        <%= link_to make_path(a_make) do %>
-                          <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');"></div>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <% typ = make.types.first %>
+                      <% typ.make_types.each_with_index do |make_type, index| %>
+                        <% a_make = make_type.make  %>
+                        <% if index > 2 %>
+                          <% next %>
                         <% end %>
-                      </div>
-                    <% end %>
+                        <div class="col-xs-4 pictures-group">
+                          <%= link_to make_path(a_make) do %>
+                            <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');"></div>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
                 <% end %>
 
-                <form class="form-inline" action="#">
-                  <input type="text" placeholder="" name="search_text" style="width: 100%">
-                  <button type="submit">Comentar</button>
-                </form>
+                <hr>
+                <% if current_user %>
+                  <h5><strong>Comente</strong></h5>
+                  <input type="text" label="Comente!" id="review-text<%= make.id %>" style="width: 100%">
+                  <button data-id="<%= make.id %>" class="review-btn">Comentar</button>
+                <% end %>
+
+                  <ul class="show-review" id="show-review<%= make.id %>">
+                    <% make.reviews.reverse.each do |review| %>
+                      <li>
+                        <h5><%= review.user.first_name + " " + review.user.last_name %></h5>
+                        <p><%= review.content %></p>
+                      </li>
+                    <% end %>
+                  </ul>
               </div>
             </div>
           </div>

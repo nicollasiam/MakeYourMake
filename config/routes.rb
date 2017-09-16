@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :makes, only: [:index, :show] do
     resources :images, only: [:new, :create]
+    resources :reviews, only: :create
   end
 
   resources :types, only: :show

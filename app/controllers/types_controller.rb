@@ -3,7 +3,7 @@ class TypesController < ApplicationController
 
   def show
     @all_types = Type.all.order(:name)
-    @type = Type.find(params[:id])
+    @type = Type.friendly.find(params[:id])
     @makes = policy_scope(Make).joins(:make_types).where(make_types: { type: @type })
     authorize(@makes)
   end

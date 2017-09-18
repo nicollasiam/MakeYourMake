@@ -9,88 +9,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'MakeYourMake', makes_path, class: 'navbar-brand' %>
+      <%= link_to 'MakeYourMake', makes_path, class: 'navbar-brand hidden-xxs' %>
+    </div>
+
+    <div class="col-xs-3 nav-search-form">
+      <form class="navbar-form" role="search" action="#">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <div class="form-group">
+          <input type="text" name="busca">
+        </div>
+      </form>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make para o Dia <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Delineado</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Esfumado</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make para a noite <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Delineado para noite</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Esfumado para noite</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artísticas <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Halloween</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Carnaval</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Personagem</a></li>
-          </ul>
-        </li>
-
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Por cores <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Nude</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Vermelho</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Preto</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Branco</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Verde</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Laranja</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Lilás</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Rosa</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Azul</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Amarelo</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Casamento <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Durante o dia</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">À noite</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inspirações <span class="caret color-items"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Famosos</a></li>
-          </ul>
-        </li>
-      </ul>
 
       <ul class="nav navbar-nav navbar-right navbar-color">
-
         <% if user_signed_in? %>
           <!-- logged in navbar -->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.artistic_name ? current_user.artistic_name : "#{current_user.first_name} #{current_user.last_name}" %> <span class="caret color-items"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.artistic_name.blank? ? "#{current_user.first_name} #{current_user.last_name}" : current_user.artistic_name %> <span class="caret color-items"></span></a>
             <ul class="dropdown-menu">
               <li>
                 <%= link_to edit_user_registration_path do %>
@@ -101,7 +38,7 @@
               <% if current_user.professional %>
                 <li>
                   <%= link_to profile_makes_path do %>
-                    <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Makes
+                    <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Inspirações
                   <% end %>
                 </li>
 

@@ -29,8 +29,12 @@ gem 'faker'
 gem 'carrierwave', '~> 1.0'
 # Figaro for security reasons
 gem 'figaro'
-# Cocoon for nested forms
-#gem 'cocoon'
+# Font-awesome for icons
+gem 'font-awesome-sass'
+# Friendly URL
+gem 'friendly_id'
+# Email validation
+gem 'validates_email_format_of'
 
 # Railsadmin for admin interface
 gem 'remotipart', github: 'mshibuya/remotipart'
@@ -40,8 +44,6 @@ gem 'rails_admin', '>= 1.0.0.rc'
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'
 
-# Font-awesome for icons
-gem 'font-awesome-sass'
 
 
 ######################################################

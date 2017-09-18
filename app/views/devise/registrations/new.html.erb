@@ -2,8 +2,17 @@
   <h2>Faça parte do MakeYourMake</h2>
   <p>Após o cadastro você já poderá postar as suas fotos</p>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <% if f.error_notification %>
+    <div class="alert alert-danger">Por favor, corrija os erros abaixo:
+      <ul>
+        <% resource.errors.messages.each do |_, value| %>
+          <li><%= value.last %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 
     <div class="form-inputs">
       <%= f.input :first_name, required: true, autofocus: true, label: 'Nome' %>
@@ -15,16 +24,39 @@
       <%= f.input :professional, label: 'Sou um maquiador profissional' %>
     </div>
 
-    <div id="professional_inputs" class="form-inputs" style="display: none">
-      <%= f.input :artistic_name, label: 'Nome artístico / Salão de beleza / Ateliê' %>
-      <%= f.input :telephone_number, label: 'Contato' %>
-      <%= f.input :address, label: 'Endereço' %>
+    <%= f.input :professional %>
+
+    <% if resource.professional %>
+      <div id="professional_inputs">
+    <% else %>
+      <div id="professional_inputs" style="display: none">
+    <% end %>
+      <%= f.input :artistic_name %>
+
+      <%= f.simple_fields_for :address do |a| %>
+        <%= a.input :street %>
+        <%= a.input :number %>
+        <%= a.input :zip_code %>
+        <%= a.input :complement %>
+        <%= a.input :district %>
+        <%= a.input :city %>
+        <%= a.input :state %>
+        <%= a.input :public %>
+      <% end %>
+
+      <%= f.simple_fields_for :telephone_number do |t| %>
+        <%= t.input :ddd %>
+        <%= t.input :number %>
+        <%= t.input :public %>
+      <% end %>
+
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Cadastrar" %>
+      <%= f.button :submit, "Sign up" %>
     </div>
-  <% end %>
+  </div>
+<% end %>
 
-  <%= render "devise/shared/links" %>
-</div>
+<%= render "devise/shared/links" %>
+

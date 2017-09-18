@@ -1,6 +1,30 @@
 .navbar.navbar-default {
   box-shadow: 0 1px 1px 0 #d8d8d8;
-  margin-bottom: 0px;
+  form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+
+    i {
+      position: absolute;
+      color: #777;
+      top: 17px;
+      left: 45px;
+    }
+
+    .form-group {
+      width: inherit;
+
+      input {
+        height: 30px;
+        width: 100%;
+        border-radius: 50px;
+        outline: none;
+        padding-left: 40px;
+        transition: all .3s ease;
+      }
+    }
+  }
 }
 
 .navbar-logo {
@@ -17,5 +41,65 @@
 .color-nav {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.075);
+}
+
+// Media queries
+
+// Extra small devices (xs)
+@media only screen and (max-width: $screen-xs-max) and (min-width: 571px) {
+  .navbar.navbar-default {
+    .navbar-form {
+      border: 0;
+    }
+
+    .nav-search-form {
+      position: absolute;
+      left: 175px;
+      top: -7px;
+
+      form {
+        margin-top: 16px;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-top: 0;
+
+        i {
+          top: 23px;
+          left: 33px;
+        }
+      }
+    }
+  }
+}
+
+// Extra extra small devices (xxs)
+@media only screen and (max-width: 571px) {
+.navbar.navbar-default {
+    .navbar-form {
+      border: 0;
+    }
+
+    .nav-search-form {
+      position: absolute;
+      left: 0;
+      top: -7px;
+
+      form {
+        margin-top: 16px;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-top: 0;
+
+        input {
+          width: 200%;
+        }
+
+        i {
+          top: 23px;
+          left: 33px;
+        }
+      }
+    }
+  }
 }
 

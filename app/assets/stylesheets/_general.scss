@@ -7,3 +7,13 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
+// Global media queries
+
+// Extra extra small devices (xxs)
+@media only screen and (max-width: 571px) {
+  .hidden-xxs {
+    display: none;
+  }
+}

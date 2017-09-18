@@ -1,4 +1,7 @@
 class Make < ApplicationRecord
+  include FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :user
   has_many :images, inverse_of: :make, dependent: :destroy
   has_many :make_types, dependent: :destroy
@@ -12,6 +15,23 @@ class Make < ApplicationRecord
 
   validates :name, :description, presence: true
 
+  ###### Validations ######
+
+  # name
+    # Presença
+    validates :name, presence: { message: 'Dê um nome para a sua make!' }
+    # Máximo de 40 caracteres
+    validates :name, length: { maximum: 40, message: 'O nome da make não deve ter mais de 40 caracteres' }
+
+  # description
+    # Presença
+    validates :description, presence: { message: 'Por favor, insira uma descrição para a sua make (lembre-se que as buscas do usuário são feitas pela descrição!)' }
+
+  private
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 end
 
 

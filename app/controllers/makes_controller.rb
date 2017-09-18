@@ -14,6 +14,7 @@ class MakesController < ApplicationController
       end
     end
 
+    @top_makes = Make.order(likes_count: :desc).limit(3)
     @types = policy_scope(Type).sample(9)
   end
 

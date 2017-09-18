@@ -21,6 +21,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
+  validates :first_name, :last_name, :email, presence: true
+
+
   ###### Validations ######
 
   # email
@@ -87,6 +90,7 @@ class User < ApplicationRecord
     # Presença apenas se professional: true
     validates :telephone_number, presence: { message: 'Deve ser informado um telefone' }, if: :is_professional?
     validates_associated :telephone_number, message: 'Um profissional deve cadastrar um telefone', if: :is_professional?
+
 
  private
 

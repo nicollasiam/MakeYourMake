@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default color-nav">
   <div class="container">
     <div class="navbar-header">
@@ -20,6 +22,7 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
       <ul class="nav navbar-nav navbar-right navbar-color">
         <% if user_signed_in? %>
           <!-- logged in navbar -->
@@ -38,8 +41,17 @@
                     <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Inspirações
                   <% end %>
                 </li>
-                <li role="separator" class="divider"></li>
+
               <% end %>
+
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to new_profile_make_path do %>
+                  <span class="glyphicon glyphicon-plus-sign color-items"></span> Cadastrar Nova Make
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+
               <li>
                 <%= link_to profile_liked_makes_path do %>
                   <span class="glyphicon glyphicon-heart-empty color-items"></span> Makes Salvas
@@ -71,6 +83,7 @@
               </li>
               <li role="separator" class="divider"></li>
               <button type="button" class="btn btn-primary">Entrar com o Facebook</button>
+
             </ul>
           </li>
         <% end %>

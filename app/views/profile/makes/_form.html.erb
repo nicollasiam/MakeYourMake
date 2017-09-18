@@ -1,8 +1,8 @@
 <%= simple_form_for([:profile, @make]) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
+  <%= f.input :name, label: 'Nome do profissional' %>
+  <%= f.input :description, label: 'Descrição da maquiagem' %>
   <%= f.input :make_types,  collection: @types, label: 'Tipo da Make' %>
-  <%= f.input :public %>
+  <%= f.input :public, label: 'Tornar a make pública' %>
 
   <%= f.submit %>
 <% end %>

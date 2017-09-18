@@ -1,14 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 text-center">
-      <form class="form-inline" action="#">
-        <input type="text" placeholder="Busque sua make do dia ou seu maquiador preferido" name="search_text" style="width: 300px">
-        <button type="submit">Procurar</button>
-      </form>
+<div class="color-banner-carousel">
+  <div class="content-text">
+    <p><i>Inspire-se nas makes</i></p>
+  </div>
+  <div class="content-text-second">
+    <p>A vida é curta. <br> Os cílios não precisam ser!</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 text-center">
+        <form class="form-inline" action="#">
+          <input type="text" placeholder="Busque sua make do dia ou seu maquiador preferido" name="search_text" style="width: 433px; height: 35px;">
+          <button class="btn btn-pink" type="submit">Procurar</button>
+        </form>
+      </div>
     </div>
   </div>
+
+  <%= render "shared/carousel" %>
 </div>
 
+
+<div class="content-text-card">
+  <p><i>Confira nossas principais categorias, <br> clique nos cards e inspire-se!</i>
+  <br>
+  <i class="fa fa-hand-o-down" aria-hidden="true"></i>
+  </p>
+</div>
 
 <% if params[:search_text].present? %>
   <div class="results-wrapper" style="background-color: white; box-shadow: 0 1px 1px 0 #d8d8d8; padding-bottom: 40px">
@@ -77,8 +95,8 @@
 <div class="types-wrapper">
   <div class="container">
     <% if params[:search_text].present? %>
-      <h2 class="text-center" style="color: #777">Não encontrou o look que estava procurando?</h2>
-      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias ira te ajudar!</h4>
+      <h2 class="text-center" style="color: #777">Não encontrou a make que estava procurando?</h2>
+      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias irá te ajudar!</h4>
     <% end %>
 
     <div class="row">

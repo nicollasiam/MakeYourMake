@@ -12,7 +12,11 @@ class Profile::MakesController < ApplicationController
     @make = Make.new
     authorize @make
     @types = Type.all
+    if current_user
+      @user = current_user
+    end
   end
+
 
   def create
     make = Make.new(make_params)

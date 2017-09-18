@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default color-nav">
   <div class="container">
     <div class="navbar-header">
@@ -13,38 +15,76 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make Dia <span class="caret color-items"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make para o Dia <span class="caret color-items"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Make preta</a></li>
+            <li><a href="#">Delineado</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Make colorida</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Make artistica</a></li>
+            <li><a href="#">Esfumado</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make Noite <span class="caret color-items"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Make para a noite <span class="caret color-items"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Make preta</a></li>
+            <li><a href="#">Delineado para noite</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Make colorida</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Make artistica</a></li>
+            <li><a href="#">Esfumado para noite</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Maquiagem <span class="caret color-items"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artísticas <span class="caret color-items"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Lábios</a></li>
+            <li><a href="#">Halloween</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Olhos</a></li>
+            <li><a href="#">Carnaval</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Rosto</a></li>
+            <li><a href="#">Personagem</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Por cores <span class="caret color-items"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Nude</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Unhas</a></li>
+            <li><a href="#">Vermelho</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Preto</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Branco</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Verde</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Laranja</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Lilás</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Rosa</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Azul</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Amarelo</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Casamento <span class="caret color-items"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Durante o dia</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">À noite</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inspirações <span class="caret color-items"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Famosos</a></li>
           </ul>
         </li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right navbar-color">
 
         <% if user_signed_in? %>
@@ -64,8 +104,17 @@
                     <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Makes
                   <% end %>
                 </li>
-                <li role="separator" class="divider"></li>
+
               <% end %>
+
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to new_profile_make_path do %>
+                  <span class="glyphicon glyphicon-plus-sign color-items"></span> Cadastrar Nova Make
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+
               <li>
                 <%= link_to profile_liked_makes_path do %>
                   <span class="glyphicon glyphicon-heart-empty color-items"></span> Makes Salvas
@@ -97,6 +146,7 @@
               </li>
               <li role="separator" class="divider"></li>
               <button type="button" class="btn btn-primary">Entrar com o Facebook</button>
+
             </ul>
           </li>
         <% end %>

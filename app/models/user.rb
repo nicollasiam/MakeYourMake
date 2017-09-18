@@ -10,8 +10,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :email, presence: true
-  validates :telephone_number, presence: { message: "O seu contato é importante para o usuário :)" }
-  validates :email, :telephone_number, uniqueness: true
+
 
  private
 

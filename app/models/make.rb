@@ -19,10 +19,13 @@ class Make < ApplicationRecord
 
   # name
     # Presença
+    validates :name, presence: { message: 'Dê um nome para a sua make!' }
     # Máximo de 40 caracteres
+    validates :name, length: { maximum: 40, message: 'O nome da make não deve ter mais de 40 caracteres' }
 
   # description
     # Presença
+    validates :description, presence: { message: 'Por favor, insira uma descrição para a sua make (lembre-se que as buscas do usuário são feitas pela descrição!)' }
 
   private
 

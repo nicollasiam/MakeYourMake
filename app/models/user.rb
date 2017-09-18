@@ -86,7 +86,7 @@ class User < ApplicationRecord
   # telephone_number (validação normal de presence)
     # Presença apenas se professional: true
     validates :telephone_number, presence: { message: 'Deve ser informado um telefone' }, if: :is_professional?
-    validates_associated :telephone_number, message: 'Um profissional deve cadastrarr um telefone', if: :is_professional?
+    validates_associated :telephone_number, message: 'Um profissional deve cadastrar um telefone', if: :is_professional?
 
  private
 

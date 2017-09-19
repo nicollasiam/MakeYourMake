@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   resources :types, only: :show
 
 
+  get '/institutional' => 'pages#institutional'
+  get '/policy' => 'pages#policy'
+  get '/term' => 'pages#term'
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
 end

@@ -42,7 +42,7 @@
             </div>
             <div class="col-xs-12 col-sm-4">
               <div class="modal-nav">
-                <h3><%= make.name %></h3>
+                <h3><%= link_to make.name, make_path(make) %></h3>
                 <p><%= make.description %></p>
                 <h4>Criado por: <strong><%= make.user.artistic_name %></strong></h4>
 
@@ -78,7 +78,7 @@
                   <ul class="show-review" id="show-review<%= make.id %>">
                     <% make.reviews.reverse.each do |review| %>
                       <li>
-                        <h5><%= review.user.first_name + " " + review.user.last_name %></h5>
+                        <h5><%= review.user.artistic_name.blank? ? "#{review.user.first_name} #{review.user.last_name}" : review.user.artistic_name %></h5>
                         <p><%= review.content %></p>
                       </li>
                     <% end %>

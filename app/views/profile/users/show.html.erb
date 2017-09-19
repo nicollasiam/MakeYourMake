@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <div class="user-information">
-          <h3> <%= @user.artistic_name %></h3>
+          <h3><strong><%= @user.artistic_name %></strong></h3>
         </div>
       </div>
       <div class="col-xs-12 col-md-6">
@@ -19,20 +19,22 @@
           </div>
         </div>
         <div class="user-contact">
-          <div>
-            <button type="button" class="btn btn-user" data-toggle="modal" data-target="#mymodal">
-              Peça seu orçamento
-            </button>
-          </div>
-          <div>
-            <button type="button" class="btn btn-user btn-sharing">
-              Compartilha!
-            </button>
-          </div>
-          <div class="shared-buttons hidden">
+
+          <button type="button" class="btn btn-user" data-toggle="modal" data-target="#mymodal">
+            Peça seu orçamento
+          </button>
+
+          <div class="shared-buttons">
+            <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, class: "fb-share"  do %>
             <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <i class="fa fa-twitter-square" aria-hidden="true"></i>
-            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to "whatsapp://send?text=" + request.original_url do %>
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to "https://twitter.com/intent/tweet" + request.original_url, class: "twitter-share-button"  do %>
+              <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            <% end %>
+
           </div>
         </div>
       </div>
@@ -43,36 +45,37 @@
 
 
     <% if @user.makes.first.images.first %>
-    <div class="show-menu">
-      <p>
-        Makes
-      </p>
-    </div>
+    <div class="user-makes ">
+      <div class="show-menu">
+        <p>
+          Makes
+        </p>
+      </div>
 
-    <div class="user-makes container">
+      <div class="container">
+
       <div class="row">
-
-        <% @user.makes.each do |make| %>
-          <%= render :partial => "make_modal", :locals => {:make => make} %>
-          <% if make.images.first && make.public %>
-            <div class="col-xs-12 col-md-4">
-              <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
-                <div class="user-make-card">
-                  <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>')">
-                    <div class="user-make-text">
-                      <%= make.name %>
+          <% @user.makes.each do |make| %>
+            <%= render :partial => "make_modal", :locals => {:make => make} %>
+            <% if make.images.first && make.public %>
+              <div class="col-xs-12 col-md-4">
+                <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+                  <div class="user-make-card">
+                    <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>')">
+                      <div class="user-make-text">
+                        <%= make.name %>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </div>
+                </a>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-
+        </div>
       </div>
     </div>
     <% end %>
   <% end %>
 
-<%= render 'budget_modal' %>
+<%= render 'shared/budget_modal' %>
 

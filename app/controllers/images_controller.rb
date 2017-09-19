@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def new
-    @make = Make.find(params[:make_id])
+    @make = Make.friendly.find(params[:make_id])
       @image = Image.new
       authorize @image
 

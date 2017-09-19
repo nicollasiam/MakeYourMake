@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include FriendlyId
-  friendly_id :artistic_name
+  friendly_id :artistic_name, use: :slugged
 
   after_create :send_welcome_email
 
@@ -21,6 +21,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
+  validates :first_name, :last_name, :email, presence: true
+
+
   ###### Validations ######
 
   # email
@@ -33,9 +36,9 @@ class User < ApplicationRecord
 
   # password
     # Mínimo de 6 caracteres
-    validates :password, length: { minimum: 6, message: 'A senha deve conter pelo menos 6 caracteres' }
+    validates :password, length: { minimum: 6, message: 'A senha deve conter pelo menos 6 caracteres' }, on: :create
     # Presença
-    validates :password, presence: { message: 'A senha não deve ser vazia'}
+    validates :password, presence: { message: 'A senha não deve ser vazia'}, on: :create
 
   # first_name
     # Ser válido (apenas letras)
@@ -75,6 +78,8 @@ class User < ApplicationRecord
     validates :artistic_name, presence: { message: 'Você deve escolher um nome artístico' }, if: :is_professional?
     # Limitar a 20 caracteres
     validates :artistic_name, length: { maximum: 20, message: 'O nome artístico deve ter no máximo 20 caracteres' }, if: :is_professional?
+    # Único
+    validates :artistic_name, uniqueness: { message: 'O nome artístico que você escolheu já existe' }, if: :is_professional?
 
   # address (validação normal de presence)
     # Presença apenas se professional: true
@@ -84,7 +89,8 @@ class User < ApplicationRecord
   # telephone_number (validação normal de presence)
     # Presença apenas se professional: true
     validates :telephone_number, presence: { message: 'Deve ser informado um telefone' }, if: :is_professional?
-    validates_associated :telephone_number, message: 'Um profissional deve cadastrarr um telefone', if: :is_professional?
+    validates_associated :telephone_number, message: 'Um profissional deve cadastrar um telefone', if: :is_professional?
+
 
  private
 
@@ -96,10 +102,9 @@ class User < ApplicationRecord
     professional
   end
 
-  def before_create
-    address.user ||= self
+  def should_generate_new_friendly_id?
+    artistic_name_changed?
   end
-
 end
 
 

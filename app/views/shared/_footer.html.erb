@@ -37,20 +37,20 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-4 footer-navegation hidden-xs">
-          <ul>
-            <li>
-              <%= link_to "Cadastro", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "Top maquiadoras", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "Eventos", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "Sobre nós", new_user_registration_path %>
-            </li>
-          </ul>
+          <div class="footer-navegation-title">
+            <h3>MYM</h3>
+          </div>
+            <div>
+              <p>
+                <%= link_to "Termos de uso", term_path %>
+              </p>
+              <p>
+                <%= link_to "Política de privacidade", policy_path %>
+              </p>
+              <p>
+                <%= link_to "Sobre nós", institutional_path %>
+              </p>
+          </div>
         </div>
       </div>
     </div>

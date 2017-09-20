@@ -20,34 +20,31 @@
       <%= f.input :email, required: true %>
       <%= f.input :password, required: true, label: 'Senha', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       <%= f.input :password_confirmation, required: true, label: 'Repetir senha' %>
-      <p>Se você for um maquiador profissional, marque o campo abaixo:</p>
-      <%= f.input :professional, label: 'Sou um maquiador profissional' %>
+      <%= f.input :professional, label: 'Sou maquiador e quero mostrar o meu trabalho' %>
     </div>
-
-    <%= f.input :professional %>
 
     <% if resource.professional %>
       <div id="professional_inputs">
     <% else %>
       <div id="professional_inputs" style="display: none">
     <% end %>
-      <%= f.input :artistic_name %>
+      <%= f.input :artistic_name, label: 'Nome Artístico' %>
 
       <%= f.simple_fields_for :address do |a| %>
-        <%= a.input :street %>
-        <%= a.input :number %>
-        <%= a.input :zip_code %>
-        <%= a.input :complement %>
-        <%= a.input :district %>
-        <%= a.input :city %>
-        <%= a.input :state %>
-        <%= a.input :public %>
+        <%= a.input :zip_code, label: 'CEP' %>
+        <%= a.input :street, label: 'Rua' %>
+        <%= a.input :number, label: 'Número' %>
+        <%= a.input :complement, label: 'Complemento' %>
+        <%= a.input :district, label: 'Bairro' %>
+        <%= a.input :city, label: 'Cidade' %>
+        <%= a.input :state, label: 'Estado' %>
+        <%= a.input :public, label: 'Quero que meu endereço seja público' %>
       <% end %>
 
       <%= f.simple_fields_for :telephone_number do |t| %>
-        <%= t.input :ddd %>
-        <%= t.input :number %>
-        <%= t.input :public %>
+        <%= t.input :ddd, label: 'DDD' %>
+        <%= t.input :number, label: 'Número' %>
+        <%= t.input :public, label: 'Quero que meu número seja público' %>
       <% end %>
 
     </div>

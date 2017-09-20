@@ -11,6 +11,12 @@ class MakesController < ApplicationController
       # Search for professional if no makes were found
       if @makes.length.zero?
         @users = User.where('lower(artistic_name) LIKE ?', "%#{params[:busca].downcase}%").where(professional: :true)
+
+        # If did not found, search for a place (district, city or state)
+        if @users.length.zero?
+          @addresses = Address.where('lower(state) LIKE ? OR lower(district) LIKE ? OR lower(city) LIKE ?',
+                                      "%#{params[:busca].downcase}%", "%#{params[:busca].downcase}%", "%#{params[:busca].downcase}%")
+        end
       end
     end
 

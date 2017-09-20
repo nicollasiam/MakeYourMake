@@ -61,9 +61,13 @@
           <% @users.each do |user| %>
             <div class="col-xs-12 col-sm-6 col-lg-4">
               <div class="make-card">
-                <%= link_to makes_path do %>
+                <%= link_to profile_user_path(user) do %>
                   <div class="parent-img">
-                    <div class="make-img" style="background-image: url('<%= cl_image_path user.makes.first.images.first.image_url %>')"></div>
+                    <% if user.makes.length > 0 && user.makes.first.images.length > 0 %>
+                      <div class="make-img" style="background-image: url('<%= cl_image_path user.makes.first.images.first.image_url %>')"></div>
+                    <% else %>
+                       <div class="make-img" style="background-image: url('https://lorempixel.com/fashion/500/500')"></div>
+                    <% end %>
                   </div>
                 <% end %>
                 <div class="make-content flexbox">
@@ -73,6 +77,33 @@
                 </div>
               </div>
             </div>
+          <% end %>
+
+          <!-- No users found. Check if any address was found -->
+        <% elsif @addresses.length > 0 %>
+          <h2 class="text-center" style="color: #777">Encontramos <%= @addresses.length %> maneiras para você ficar linda em '<%= params[:busca] %>'</h2>
+          <% @addresses.each do |address| %>
+            <!-- Show only if user is professional -->
+            <% if address.user.professional %>
+              <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="make-card">
+                  <%= link_to profile_user_path(address.user) do %>
+                    <div class="parent-img">
+                      <% if address.user.makes.length > 0 && address.user.makes.first.images.length > 0 %>
+                        <div class="make-img" style="background-image: url('<%= cl_image_path address.user.makes.first.images.first.image_url %>')"></div>
+                      <% else %>
+                         <div class="make-img" style="background-image: url('https://lorempixel.com/fashion/500/500')"></div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <div class="make-content flexbox">
+                    <div class="make-content-text">
+                      <h4><%= address.user.artistic_name %></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
 
         <!-- Neither makes or users found -->

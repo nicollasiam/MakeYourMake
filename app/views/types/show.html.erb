@@ -16,35 +16,40 @@
   </div>
 </div>
 
+
 <div class="makes-wrapper">
   <div class="container">
     <div class="row">
       <% @makes.each do |make| %>
-        <div class="col-xs-12 col-sm-6 col-lg-4">
-          <div class="make-card">
-            <%= link_to make_path(make) do %>
+        <% if make.images.first && make.public %>
+          <div class="col-xs-12 col-sm-6 col-lg-4">
+            <div class="make-card">
+            <%= render :partial => "shared/make_modal", :locals => {:make => make, :type => @type} %>
+            <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
               <%#= cl_image_tag make.images.first.image_url %>
               <div class="parent-img">
                 <div class="make-img" style="background-image: url('<%= cl_image_path make.images.first.image_url %>')"></div>
               </div>
-            <% end %>
-            <div class="make-content flexbox">
-              <div class="make-content-text">
-                <h4><%= make.name %></h4>
-                <p><%= make.user.artistic_name %></p>
+            </a>
+              <div class="make-content flexbox">
+                <div class="make-content-text">
+                  <h4><%= make.name %></h4>
+                  <p><%= make.user.artistic_name %></p>
+                </div>
+                <% if make_is_liked_by_user?(make) %>
+                  <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
+                    <i class="fa fa-heart"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
+                    <i class="fa fa-heart-o"></i>
+                  <% end %>
+                <% end %>
               </div>
-              <% if make_is_liked_by_user?(make) %>
-                <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
-                  <i class="fa fa-heart"></i>
-                <% end %>
-              <% else %>
-                <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
-                  <i class="fa fa-heart-o"></i>
-                <% end %>
-              <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
+
       <% end %>
     </div>
   </div>

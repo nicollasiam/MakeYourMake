@@ -9,5 +9,6 @@ class Profile::UsersController < ApplicationController
       make.images.first.present?
     end
     @review = Review.new
+
   end
 end

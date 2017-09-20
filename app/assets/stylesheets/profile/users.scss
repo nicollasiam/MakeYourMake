@@ -39,7 +39,8 @@
 .btn-user {
   background-color: #8F003A;
   border: 1px solid #8F003A;
-
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+  border-radius: 5px;
   text-decoration: none;
   color: white;
   -webkit-transition: all 0.5s ease;

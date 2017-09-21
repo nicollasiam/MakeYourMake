@@ -17,6 +17,7 @@ class Address < ApplicationRecord
     # Presença
     validates :zip_code, presence: { message: 'Por favor, informe o CEP' }, if: :is_professional_user?
     # Verificar correios
+    # Verificado no javascript
 
   # complement
     # Máximo de 50 caracteres

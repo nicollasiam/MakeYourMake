@@ -1,59 +1,73 @@
-<div class="container">
-  <h2>Faça parte do MakeYourMake</h2>
-  <p>Após o cadastro você já poderá postar as suas fotos</p>
+<div class="user-attributes-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="user-attributes-inner-wrapper">
+          <h2>Faça parte do MakeYourMake</h2>
+          <p>Após o cadastro você já poderá postar as suas fotos</p>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <% if f.error_notification %>
-    <div class="alert alert-danger">Por favor, corrija os erros abaixo:
-      <ul>
-        <% resource.errors.messages.each do |_, value| %>
-          <li><%= value.last %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'col-xs-12') do |f| %>
+            <% if f.error_notification %>
+              <div class="alert alert-danger">
+                Por favor, corrija os erros abaixo:
+                <ul>
+                  <% resource.errors.messages.each do |_, value| %>
+                    <li><%= value.last %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
 
+            <div class="form-inputs">
+              <%= f.input :first_name, required: true, autofocus: true, label: 'Nome', wrapper_html: { class: 'col-xs-5' }, error: false %>
+              <%= f.input :last_name, required: true, label: 'Sobrenome', wrapper_html: { class: 'col-xs-7' }, error: false %>
+              <%= f.input :email, required: true, wrapper_html: { class: 'col-xs-12' }, error: false %>
+              <%= f.input :password, required: true, label: 'Senha', hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length), wrapper_html: {class: 'col-xs-6' }, error: false, error: false %>
+              <%= f.input :password_confirmation, required: true, label: 'Repetir senha', wrapper_html: { class: 'col-xs-6' }, error: false %>
+              <%= f.input :professional, label: 'Sou maquiador e quero mostrar o meu trabalho', wrapper_html: { class: 'col-xs-12 text-left' } %>
+            </div>
 
-    <div class="form-inputs">
-      <%= f.input :first_name, required: true, autofocus: true, label: 'Nome' %>
-      <%= f.input :last_name, required: true, label: 'Sobrenome' %>
-      <%= f.input :email, required: true %>
-      <%= f.input :password, required: true, label: 'Senha', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-      <%= f.input :password_confirmation, required: true, label: 'Repetir senha' %>
-      <%= f.input :professional, label: 'Sou maquiador e quero mostrar o meu trabalho' %>
-    </div>
+            <% if resource.professional %>
+              <div id="professional_inputs">
+            <% else %>
+              <div id="professional_inputs" style="display: none;">
+            <% end %>
+              <%= f.input :artistic_name, label: 'Nome Artístico', input_html: { maxlength: 20 }, wrapper_html: { class: 'col-xs-12' }, error: false %>
 
-    <% if resource.professional %>
-      <div id="professional_inputs">
-    <% else %>
-      <div id="professional_inputs" style="display: none">
-    <% end %>
-      <%= f.input :artistic_name, label: 'Nome Artístico' %>
+              <%= f.simple_fields_for :address do |a| %>
+                <%= a.input :zip_code, label: 'CEP', wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= a.input :street, label: 'Rua', wrapper_html: { class: 'col-xs-8' }, error: false %>
+                <%= a.input :number, label: 'Número', wrapper_html: { class: 'col-xs-2' }, error: false %>
+                <%= a.input :complement, label: 'Complemento', input_html: { maxlength: 50 }, wrapper_html: { class: 'col-xs-10' }, error: false %>
+                <%= a.input :district, label: 'Bairro', wrapper_html: { class: 'col-xs-6' }, error: false %>
+                <%= a.input :city, label: 'Cidade', wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= a.input :state, label: 'Estado', wrapper_html: { class: 'col-xs-2' }, error: false %>
+                <%= a.input :public, label: 'Quero que meu endereço seja público', wrapper_html: { class: 'col-xs-12 text-left' }, error: false %>
+              <% end %>
 
-      <%= f.simple_fields_for :address do |a| %>
-        <%= a.input :zip_code, label: 'CEP' %>
-        <%= a.input :street, label: 'Rua' %>
-        <%= a.input :number, label: 'Número' %>
-        <%= a.input :complement, label: 'Complemento' %>
-        <%= a.input :district, label: 'Bairro' %>
-        <%= a.input :city, label: 'Cidade' %>
-        <%= a.input :state, label: 'Estado' %>
-        <%= a.input :public, label: 'Quero que meu endereço seja público' %>
-      <% end %>
+              <%= f.simple_fields_for :telephone_number do |t| %>
+                <%= t.input :ddd, label: 'DDD', collection: [11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28, 31,
+                                                             32, 33, 34, 35, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+                                                             51, 53, 54, 55, 61, 62, 63, 64, 65, 66, 67, 68, 69, 71, 73,
+                                                             74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92,
+                                                             93, 94, 95, 96, 97, 98, 99],
+                                                             wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= t.input :number, label: 'Número', input_html: { maxlength: 9 }, wrapper_html: { class: 'col-xs-8' }, error: false %>
+                <%= t.input :public, label: 'Quero que meu número seja público', wrapper_html: { class: 'col-xs-12 text-left' }, error: false %>
+              <% end %>
+            </div> <!-- End: #profesisonal_imputs -->
 
-      <%= f.simple_fields_for :telephone_number do |t| %>
-        <%= t.input :ddd, label: 'DDD' %>
-        <%= t.input :number, label: 'Número' %>
-        <%= t.input :public, label: 'Quero que meu número seja público' %>
-      <% end %>
+            <div class="submit-input col-xs-12">
+              <%= f.button :submit, "Cadastrar" %>
+            </div>
 
-    </div>
+          <% end %>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
+          <%#= render "devise/shared/links" %>
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
 

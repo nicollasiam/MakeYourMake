@@ -25,6 +25,7 @@ class MakesController < ApplicationController
   end
 
   def show
+    @all_types = Type.all.order(:name)
     @make = Make.friendly.find(params[:id])
     authorize @make
     @image = Image.new

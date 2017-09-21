@@ -4,6 +4,8 @@
       <div class="col-xs-12 col-md-6">
         <div class="user-information">
           <h3><strong><%= @user.artistic_name %></strong></h3>
+          <p><%= @user.description %></p>
+          <%  %>
         </div>
       </div>
       <div class="col-xs-12 col-md-6">
@@ -12,17 +14,20 @@
       <% else %>
         <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://design2web.com.br/blog/wp-content/uploads/2016/05/size_810_16_9_plus-size-modelo.jpg')">
       <% end %>
-          <div class="banner-content">
-            <div class="banner-user-description">
-              <%= @user.artistic_name %>
-            </div>
-          </div>
         </div>
         <div class="user-contact">
 
-          <button type="button" class="btn btn-user" data-toggle="modal" data-target="#mymodal">
-            Peça seu orçamento
-          </button>
+          <% if  current_user && @user == current_user %>
+
+
+            <button type="button" class="btn btn-user hidden-xs" onclick="">
+              Adicione imagem
+            </button>
+          <% else %>
+            <button type="button" class="btn btn-user hidden-xs" data-toggle="modal" data-target="#mymodal">
+              Peça seu orçamento
+            </button>
+          <% end %>
 
           <div class="shared-buttons">
             <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, class: "fb-share"  do %>
@@ -56,7 +61,7 @@
 
       <div class="row">
           <% @user.makes.each do |make| %>
-            <%= render :partial => "make_modal", :locals => {:make => make} %>
+            <%= render :partial => "shared/make_modal", :locals => {:make => make} %>
             <% if make.images.first && make.public %>
               <div class="col-xs-12 col-md-4">
                 <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">

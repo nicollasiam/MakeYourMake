@@ -22,8 +22,6 @@
                   <% make.images.each_with_index do |image,index| %>
                     <% if index == 0  %>
                       <div class="item active" style="background-image: url('<%= make.images.first.image_url %>');">
-
-
                       </div>
                     <% else %>
                       <div class="item" style="background-image: url('<%= image.image_url %>');">
@@ -42,9 +40,9 @@
             </div>
             <div class="col-xs-12 col-sm-4">
               <div class="modal-nav">
-                <h3><%= link_to make.name, make_path(make) %></h3>
+                <h3><%= make.name %></h3>
                 <p><%= make.description %></p>
-                <h4>Criado por: <strong><%= make.user.artistic_name %></strong></h4>
+                <h4>Criado por: <strong><%= link_to make.user.artistic_name, profile_user_path(make.user.id)%></strong></h4>
 
                 <hr>
 
@@ -52,17 +50,16 @@
                   <h5><strong>Veja makes parecidas</strong></h5>
                   <div class="container-fluid">
                     <div class="row">
-                      <% typ = make.types.first %>
-                      <% typ.make_types.each_with_index do |make_type, index| %>
+                      <% type = make.types.first %>
+                      <% type.make_types.each_with_index do |make_type, index| %>
                         <% a_make = make_type.make  %>
-                        <% if index > 2 %>
-                          <% next %>
+                        <% if a_make.public && a_make.images.first && a_make != make %>
+                          <div class="col-xs-4 pictures-group">
+                            <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');">
+                            </div>
+                          </div>
                         <% end %>
-                        <div class="col-xs-4 pictures-group">
-                          <%= link_to make_path(a_make) do %>
-                            <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');"></div>
-                          <% end %>
-                        </div>
+
                       <% end %>
                     </div>
                   </div>

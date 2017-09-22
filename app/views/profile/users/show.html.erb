@@ -12,11 +12,11 @@
       <% else %>
         <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://design2web.com.br/blog/wp-content/uploads/2016/05/size_810_16_9_plus-size-modelo.jpg')">
       <% end %>
-          <div class="banner-content">
-            <div class="banner-user-description">
-              <%= @user.artistic_name %>
-            </div>
+        <div class="banner-content">
+          <div class="banner-user-description">
+            <%= @user.artistic_name %>
           </div>
+        </div>
         </div>
         <div class="user-contact">
 
@@ -34,48 +34,33 @@
             <%= link_to "https://twitter.com/intent/tweet" + request.original_url, class: "twitter-share-button"  do %>
               <i class="fa fa-twitter-square" aria-hidden="true"></i>
             <% end %>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-  <% if @user.makes.first %>
 
-
-    <% if @user.makes.first.images.first %>
-    <div class="user-makes ">
-      <div class="show-menu">
-        <p>
-          Makes
-        </p>
-      </div>
-
-      <div class="container">
-
-      <div class="row">
-          <% @user.makes.each do |make| %>
-            <%= render :partial => "make_modal", :locals => {:make => make} %>
-            <% if make.images.first && make.public %>
-              <div class="col-xs-12 col-md-4">
-                <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
-                  <div class="user-make-card">
-                    <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>')">
-                      <div class="user-make-text">
-                        <%= make.name %>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+<div class="user-makes">
+  <div class="show-menu">
+    <p>Makes</p>
+    <!-- Show filter options if current user is the profile owner -->
+    <% if @user == current_user %>
+      <ul id="input-filters" class="list-inline" data-id="<%= current_user.id %>">
+        <li><input id="non_public" class="checkbox" type="checkbox" name="nao_publico"><span>Apenas Makes não públicas</span></li>
+        <li><input id="no_photos" class="checkbox" type="checkbox" name="sem_foto"> Apenas Makes sem foto</li>
+      </ul>
     <% end %>
-  <% end %>
+  </div>
+
+  <div class="my-makes-wrapper">
+    <div class="container">
+      <div class="row">
+        <%= render partial: 'profile/users/makes_container', locals: { makes: @makes } %>
+      </div> <!-- End: .row -->
+    </div> <!-- End: .container -->
+  </div>
+</div> <!-- End: .user-makes -->
 
 <%= render 'shared/budget_modal' %>
 

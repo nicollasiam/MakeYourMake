@@ -6,6 +6,7 @@ class Profile::MakesController < ApplicationController
   end
 
   def edit
+    authorize @make
   end
 
   def new
@@ -32,13 +33,14 @@ class Profile::MakesController < ApplicationController
     authorize(make)
     if make.save!
       # MakeMailer.creation_confirmation(@make).deliver_now
-      redirect_to make_path(make)
+      redirect_to profile_user_path(current_user)
     else
       render :new
     end
   end
 
   def update
+    authorize @make
     if @make.update(make_params)
       redirect_to make_path(@make)
     else
@@ -48,8 +50,9 @@ class Profile::MakesController < ApplicationController
 
   def destroy
     @make.destroy
+    authorize @make
 
-    redirect_to profile_makes_path
+    redirect_to profile_user_path(current_user)
   end
 
   # Private methods
@@ -60,6 +63,6 @@ class Profile::MakesController < ApplicationController
   end
 
   def find_make
-    @make = Make.find(params[:id])
+    @make = Make.friendly.find(params[:id])
   end
 end

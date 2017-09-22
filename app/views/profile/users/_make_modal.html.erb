@@ -60,7 +60,11 @@
                         <% end %>
                         <div class="col-xs-4 pictures-group">
                           <%= link_to make_path(a_make) do %>
-                            <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');"></div>
+                            <% if a_make.images.length > 0 %>
+                              <div class="mini-picture" style="background-image: url('<%= a_make.images.first.image_url %>');"></div>
+                            <% else %>
+                              <div class="mini-picture" style="background-color: #F4F4F4;"></div>
+                            <% end %>
                           <% end %>
                         </div>
                       <% end %>

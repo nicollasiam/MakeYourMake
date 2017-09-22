@@ -1,0 +1,5 @@
+var makes = $('<%= j render partial: "profile/users/makes_container", locals: { makes: @makes } %>');
+$('.user-makes .row').fadeOut(function() {
+  $('.user-makes .row').html(makes);
+  $('.user-makes .row').fadeIn();
+});

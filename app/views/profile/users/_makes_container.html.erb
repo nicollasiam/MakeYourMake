@@ -1,0 +1,92 @@
+<% makes.each do |make| %>
+  <!-- Show non public makes only if current user is the make's owner -->
+  <% if make.user == current_user && !make.public %>
+    <%= render partial: "make_modal", locals: { make: make } %>
+    <div class="col-xs-12 col-md-4">
+      <div class="user-make-card">
+        <!-- Show make information to the owner -->
+        <ul class="list-inline text-center">
+          <li> <!-- Icon indicating if make is visible or not -->
+            <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
+          </li>
+          <li> <!-- Link to add image -->
+            <%= link_to new_make_image_path(make) do %>
+              <i class="fa fa-file-image-o" aria-hidden="true" title="Adicionar Imagem"></i>
+            <% end %>
+          </li>
+          <li> <!-- Edit Make -->
+            <%= link_to edit_profile_make_path(make) do %>
+              <i class="fa fa-pencil" aria-hidden="true" title="Editar Make"></i>
+            <% end %>
+          </li>
+          <li> <!-- Delete Make -->
+            <%= link_to profile_make_path(make), method: :delete, data: { confirm: 'Tem certeza?' } do %>
+              <i class="fa fa-trash-o" aria-hidden="true" title="Excluir Make"></i>
+            <% end %>
+          </li>
+        </ul>
+
+        <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+          <% if make.images.length > 0 %>
+            <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+          <% else %>
+            <div class="make-img" style="background-color: #999999;">
+          <% end %>
+            <div class="user-make-text">
+              <%= make.name %>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  <!-- if current user is not the make's owner, only show public makes -->
+  <!-- Show these makes also to the owner -->
+  <% elsif make.public %>
+    <%= render partial: "make_modal", locals: { make: make } %>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="user-make-card">
+        <% if make.user == current_user %>
+          <!-- Show make information to the owner -->
+          <ul class="list-inline text-center">
+            <li> <!-- Icon indicating if make is visible or not -->
+              <% if make.public %>
+                <i class="fa fa-eye" aria-hidden="true" title="Make pública"></i>
+              <% else %>
+                <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
+              <% end %>
+            </li>
+            <li> <!-- Link to add image -->
+              <%= link_to new_make_image_path(make) do %>
+                <i class="fa fa-file-image-o" aria-hidden="true" title="Adicionar Imagem"></i>
+              <% end %>
+            </li>
+            <li> <!-- Edit Make -->
+              <%= link_to edit_profile_make_path(make) do %>
+                <i class="fa fa-pencil" aria-hidden="true" title="Editar Make"></i>
+              <% end %>
+            </li>
+            <li> <!-- Delete Make -->
+              <%= link_to profile_make_path(make), method: :delete, data: { confirm: 'Tem certeza?' } do %>
+                <i class="fa fa-trash-o" aria-hidden="true" title="Excluir Make"></i>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+
+        <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+          <% if make.images.length > 0 %>
+            <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+          <% else %>
+            <div class="make-img" style="background-color: #999999;">
+          <% end %>
+            <div class="user-make-text">
+              <%= make.name %>
+            </div>
+          </div> <!-- End: .make-img -->
+        </a>
+      </div> <!-- End: .user-make-card -->
+    </div> <!-- End: .col-xs-12 .col-md-4 -->
+  <% end %>
+<% end %>

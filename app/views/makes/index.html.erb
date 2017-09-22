@@ -1,24 +1,13 @@
 
-<div class="color-banner-carousel">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1505863384/bt_sejy4v.jpg');">
   <div class="content-text">
-    <p><i>Inspire-se nas makes</i></p>
-  </div>
-  <div class="content-text-second">
-    <p>A vida é curta. <br> Os cílios não precisam ser!</p>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3 text-center">
-        <form class="form-inline" action="#" role="search">
-          <input type="text" placeholder="Busque sua make do dia ou seu maquiador preferido" name="busca" style="width: 433px; height: 35px;">
-          <button class="btn btn-pink" type="submit">Procurar</button>
-        </form>
-      </div>
-    </div>
+    <h2><i>Inspire-se nas makes</i></h2>
+    <button class="btn-user">
+      Cadastrar
+    </button>
   </div>
 
-  <%= render "shared/carousel" %>
+
 </div>
 
 <% if params[:busca].present? %>
@@ -125,7 +114,7 @@
       <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias ira te ajudar!</h4>
     <% else %>
       <div class="content-text-card">
-        <p><i>Confira nossas principais categorias, <br> clique nos cards e inspire-se!</i>
+        <p><i>Confira nossas principais categorias!</i>
         <br>
         <i class="fa fa-hand-o-down" aria-hidden="true"></i>
         </p>

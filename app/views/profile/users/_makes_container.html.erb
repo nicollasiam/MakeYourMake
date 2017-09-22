@@ -1,7 +1,7 @@
 <% makes.each do |make| %>
   <!-- Show non public makes only if current user is the make's owner -->
   <% if make.user == current_user && !make.public %>
-    <%= render partial: "make_modal", locals: { make: make } %>
+    <%= render partial: "shared/make_modal", locals: { make: make } %>
     <div class="col-xs-12 col-md-4">
       <div class="user-make-card">
         <!-- Show make information to the owner -->
@@ -43,7 +43,7 @@
   <!-- if current user is not the make's owner, only show public makes -->
   <!-- Show these makes also to the owner -->
   <% elsif make.public %>
-    <%= render partial: "make_modal", locals: { make: make } %>
+    <%= render partial: "shared/make_modal", locals: { make: make } %>
 
     <div class="col-xs-12 col-md-4">
       <div class="user-make-card">

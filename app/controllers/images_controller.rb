@@ -11,8 +11,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    # raise
-    @make = Make.find(params[:make_id])
+    @make = Make.friendly.find(params[:make_id])
 
     if @make.user == current_user
       image = Image.new(image_params)

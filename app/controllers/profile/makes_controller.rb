@@ -6,6 +6,7 @@ class Profile::MakesController < ApplicationController
   end
 
   def edit
+    @types = Type.all
     authorize @make
   end
 

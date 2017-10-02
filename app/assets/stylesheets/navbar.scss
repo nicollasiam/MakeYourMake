@@ -1,3 +1,10 @@
+.avatar {
+  left: 88em;
+  position: absolute;
+  margin-top: 4px;
+}
+
+
 .navbar.navbar-default {
   box-shadow: 0 1px 1px 0 #d8d8d8;
   form {
@@ -41,6 +48,7 @@
 .color-nav {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.075);
+  position: relative;
 }
 
 // Media queries

@@ -19,7 +19,7 @@ class ImagesController < ApplicationController
       authorize(image)
 
       if image.save
-        redirect_to make_path(@make)
+        redirect_to profile_user_path(@make.user)
       else
         # TODO: Stay in this view and show an error message
         redirect_to makes_path

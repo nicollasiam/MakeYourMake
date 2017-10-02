@@ -4,7 +4,22 @@
 
   .user-attributes-inner-wrapper {
     display: inline-block;
-    background-color: #FFEFF5;
+    background-color: #f2dede;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+  }
+}
+
+
+.user-attributes-wrapper-sessions-new {
+  background-color: white;
+  margin-top: -20px;
+
+  .user-attributes-inner-wrapper-sessions-new {
+
+    background-color: #f2dede;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;

@@ -29,4 +29,10 @@ class Profile::UsersController < ApplicationController
       respond_to { |format| format.js }
     end
   end
+
+  def index
+    @telephone_numbers = Telephone_numbers.all
+    @ddd = Ddd.all
+    @number = Number.all
+  end
 end

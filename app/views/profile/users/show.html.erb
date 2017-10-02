@@ -1,20 +1,28 @@
 <div class="user-presentation">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-6 position-for-make-user">
         <div class="user-information">
           <h3><strong><%= @user.artistic_name %></strong></h3>
-          <p><%= @user.description %></p>
-          <p><%= @user.description %></p>
-          <p><%= @user.description %></p>
-          <p><%= @user.description %></p>
+          <p><i class="fa fa-envelope-o" aria-hidden="true"></i>
+          <%= @user.email %></p>
+          <p><i class="fa fa-phone" aria-hidden="true"></i>
+          (<%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %></p>
+          <p><i class="fa fa-comment-o" aria-hidden="true"></i>...
+          <%= @user.description %> </p>
+        </div>
+        <div class="make-user">
+          <% if @user.facebook_picture_url.present? %><%= image_tag @user.facebook_picture_url %>
+            <% else %> <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
+          <% end %>
         </div>
       </div>
+
       <div class="col-xs-12 col-md-6">
       <% if @banner_makes.present? %>
         <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.first.images.first.image_url %>')">
       <% else %>
-        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://design2web.com.br/blog/wp-content/uploads/2016/05/size_810_16_9_plus-size-modelo.jpg')">
+        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1506952723/ft_vbnfou.jpg')">
       <% end %>
           <div class="banner-content">
             <div class="banner-user-description">
@@ -60,7 +68,7 @@
     <!-- Show filter options if current user is the profile owner -->
     <% if @user == current_user %>
       <ul id="input-filters" class="list-inline" data-id="<%= current_user.id %>">
-        <li><input id="non_public" class="checkbox" type="checkbox" name="nao_publico"><span>Apenas Makes não públicas</span></li>
+        <li><input id="non_public" class="checkbox" type="checkbox" name="nao_publico"><span>  Apenas Makes não públicas</span></li>
         <li><input id="no_photos" class="checkbox" type="checkbox" name="sem_foto"> Apenas Makes sem foto</li>
       </ul>
     <% end %>
@@ -76,4 +84,5 @@
 </div> <!-- End: .user-makes -->
 
 <%= render 'shared/budget_modal' %>
+
 

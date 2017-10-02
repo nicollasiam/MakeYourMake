@@ -1,4 +1,5 @@
 .user-information {
+  position: relative;
   padding: 15px;
   border: 1px solid #2F4F4F;
   background-color: white;
@@ -14,6 +15,14 @@
       text-decoration: none;
     }
   }
+}
+
+.make-user {
+  position: absolute;
+  right: 78px;
+  top: 10px;
+  width: 40px;
+  border-radius: 50%;
 }
 
 .shared-buttons {

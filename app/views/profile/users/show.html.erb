@@ -8,8 +8,10 @@
           <%= @user.email %></p>
           <p><i class="fa fa-phone" aria-hidden="true"></i>
           (<%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %></p>
-          <p><i class="fa fa-comment-o" aria-hidden="true"></i>...
-          <%= @user.description %> </p>
+          <p><i class="fa fa-map-marker" aria-hidden="true"></i>
+          User.city</p>
+          <p><i class="fa fa-comment-o" aria-hidden="true"></i>
+          User.description </p>
         </div>
         <div class="make-user">
           <% if @user.facebook_picture_url.present? %><%= image_tag @user.facebook_picture_url %>
@@ -36,7 +38,7 @@
 
 
             <button type="button" class="btn btn-user hidden-xs" onclick="">
-              <%= link_to "Adicione imagem", new_profile_make_path %>
+              <%= link_to "Criar nova make", new_profile_make_path %>
             </button>
           <% else %>
             <button type="button" class="btn btn-user hidden-xs" data-toggle="modal" data-target="#mymodal">

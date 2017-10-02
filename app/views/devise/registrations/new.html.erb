@@ -33,6 +33,7 @@
               <div id="professional_inputs" style="display: none;">
             <% end %>
               <%= f.input :artistic_name, label: 'Nome Artístico', input_html: { maxlength: 20 }, wrapper_html: { class: 'col-xs-12' }, error: false %>
+              <%= f.input :description, label: 'Breve descrição sobre você', input_html: { maxlength: 200 }, wrapper_html: { class: 'col-xs-12' }, error: false %>
 
               <%= f.simple_fields_for :address do |a| %>
                 <%= a.input :zip_code, label: 'CEP', wrapper_html: { class: 'col-xs-4' }, error: false %>

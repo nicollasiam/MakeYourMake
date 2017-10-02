@@ -43,7 +43,7 @@ class Profile::MakesController < ApplicationController
   def update
     authorize @make
     if @make.update(make_params)
-      redirect_to make_path(@make)
+      redirect_to profile_user_path(current_user)
     else
       render :edit
     end

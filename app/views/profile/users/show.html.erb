@@ -5,7 +5,9 @@
         <div class="user-information">
           <h3><strong><%= @user.artistic_name %></strong></h3>
           <p><%= @user.description %></p>
-          <%  %>
+          <p><%= @user.description %></p>
+          <p><%= @user.description %></p>
+          <p><%= @user.description %></p>
         </div>
       </div>
       <div class="col-xs-12 col-md-6">
@@ -26,7 +28,7 @@
 
 
             <button type="button" class="btn btn-user hidden-xs" onclick="">
-              Adicione imagem
+              <%= link_to "Adicione imagem", new_profile_make_path %>
             </button>
           <% else %>
             <button type="button" class="btn btn-user hidden-xs" data-toggle="modal" data-target="#mymodal">
@@ -49,6 +51,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="user-makes">

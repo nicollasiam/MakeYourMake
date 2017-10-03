@@ -4,7 +4,7 @@
       <div class="col-xs-8 col-xs-offset-2">
         <div class="user-attributes-inner-wrapper-sessions-new">
           <div class="content-form">
-            <p>Olá <strong><%= @user.first_name %></strong>, <br>
+            <p>Olá <strong><%= @user.first_name.capitalize %></strong>, <br>
              Vamos postar a sua make ? </p>
           </div>
           <%= render 'form' %>

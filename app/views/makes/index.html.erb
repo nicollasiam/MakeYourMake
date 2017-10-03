@@ -1,20 +1,28 @@
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg');">
-  <div class="content-text">
-    <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
-    <p>Crie sua conta e começe agora!</p>
-    <button class="btn-user-index">
-      <i class="fa fa-envelope-o" aria-hidden="true"></i>
-      Cadastrar com o E-mail
-    </button>
-    <button class="btn-user-facebook">
-      <i class="fa fa-facebook" aria-hidden="true"></i>
-      Cadastrar com o Facebook
-    </button>
+<% if user_signed_in? %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg');">
+    <div class="content-text">
+      <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
+    </div>
   </div>
-
-
-</div>
+<% else %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg');">
+    <div class="content-text">
+      <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
+      <p>Crie a sua conta e começe agora!</p>
+      <button class="btn-user-index">
+        <%= link_to new_user_registration_path do %>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        Cadastrar com o E-mail
+        <% end %>
+      </button>
+      <button class="btn-user-facebook">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        Cadastrar com o Facebook
+      </button>
+    </div>
+  </div>
+<% end %>
 
 <% if params[:busca].present? %>
   <div class="results-wrapper" style="background-color: white; box-shadow: 0 1px 1px 0 #d8d8d8; padding-bottom: 40px">

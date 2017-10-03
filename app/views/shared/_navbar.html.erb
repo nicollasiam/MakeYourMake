@@ -1,5 +1,5 @@
 
-
+<% if user_signed_in? %>
 <nav class="navbar navbar-default color-nav">
   <div class="container">
     <div class="navbar-header">
@@ -93,5 +93,95 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<% else %>
+<nav class="navbar navbar-default color-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'MakeYourMake', root_path, class: 'navbar-brand hidden-xxs' %>
+    </div>
 
+    <div class="col-xs-3 nav-search-form">
+      <form class="navbar-form" role="search" action="#">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <div class="form-group">
+          <input type="text" name="busca">
+        </div>
+      </form>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right navbar-color">
+        <% if user_signed_in? %>
+          <!-- logged in navbar -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="current-user-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.artistic_name.blank? ? "#{current_user.first_name} #{current_user.last_name}" : current_user.artistic_name %> <span class="caret color-items"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to profile_user_path(current_user) do %>
+                  <span class="glyphicon glyphicon-user color-items"></span> Perfil
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <% if current_user.professional %>
+                <li>
+                  <%= link_to profile_makes_path do %>
+                    <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Makes
+                  <% end %>
+                </li>
+
+              <% end %>
+
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to new_profile_make_path do %>
+                  <span class="glyphicon glyphicon-plus-sign color-items"></span> Cadastrar Nova Make
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+
+              <li>
+                <%= link_to profile_liked_makes_path do %>
+                  <span class="glyphicon glyphicon-heart-empty color-items"></span> Inspirações
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <span class="glyphicon glyphicon-log-out color-items"></span> Sair
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <!-- Loged out navbar -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-o color-items" aria-hidden="true"></i> Entrar / Cadastrar <span class="caret color-items"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to new_user_session_path do %>
+                  <span class="glyphicon glyphicon-log-in color-items"></span> Entrar
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                  <span class="glyphicon glyphicon-user color-items"></span> Cadastrar
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<% end %>
 

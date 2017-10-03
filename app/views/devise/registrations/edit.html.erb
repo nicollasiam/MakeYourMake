@@ -1,31 +1,40 @@
-<div class="container">
-  <div class="row">
-    <h2>Editar dados de cadastro <%= resource_name.to_s.humanize %></h2>
+<div class="user-attributes-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="user-attributes-inner-wrapper">
+          <h2>Editar dados de cadastro <%= resource_name.to_s.humanize %></h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
 
-      <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true, label: "E-mail" %>
+            <div class="form-inputs">
+              <%= f.input :email, required: true, autofocus: true, label: "E-mail" %>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <% end %>
 
-        <%= f.input :password, autocomplete: "off", hint: "Deixe em branco se você não quer alterar a senha", label: "Senha", required: false %>
-        <%= f.input :password_confirmation, label: "Repita a sua senha", required: false %>
-        <%= f.input :current_password, hint: "Coloque a sua senha atual para atualizar as informações", required: true, label: "Senha atual" %>
+              <%= f.input :password, autocomplete: "off", hint: "Deixe em branco se você não quer alterar a senha", label: "Senha", required: false %>
+              <%= f.input :password_confirmation, label: "Repita a sua senha", required: false %>
+              <%= f.input :current_password, hint: "Coloque a sua senha atual para atualizar as informações", required: true, label: "Senha atual" %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Atualizar" %>
+            </div>
+          <% end %>
+
+          <h3>Deletar a minha conta</h3>
+
+          <p>Tem certeza que deseja deletar a sua conta? <u><%= link_to "Quero deletar", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></u></p>
+
+          <%= link_to "Voltar", :back  %>
+        </div>
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Atualizar" %>
-      </div>
-    <% end %>
-
-    <h3>Deletar a minha conta</h3>
-
-    <p>Tem certeza que deseja deletar a sua conta? <u><%= link_to "Quero deletar", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></u></p>
-
-    <%= link_to "Voltar", :back  %>
+    </div>
   </div>
 </div>
+
+
+

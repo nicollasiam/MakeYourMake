@@ -1,32 +1,43 @@
-<div class=”ui segment”>
-  <h3>Mailbox</h3>
-
-  <div class=”ui list”>
-    <div class=”item”>
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-          <% if conversation.sender_id == current_user.id %>
-            <% recipient = User.find(conversation.recipient_id) %>
-          <% else %>
-            <% recipient = User.find(conversation.sender_id) %>
-          <% end %>
-          <%= link_to recipient.first_name,   conversation_messages_path(conversation)%>
-        <% end %>
+<h3>Mailbox</h3>
+<div class="mail-total">
+  <div class="mailbox">
+    <% @mine_conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <% recipient = conversation.recipient %>
+      <% else %>
+        <% recipient = conversation.sender %>
       <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="ui segment">
-  <h3>All Users</h3>
-  <div class="ui list">
-    <% @users.each do |user| %>
-      <% if user.id != current_user.id %>
-        <div class=”item”>
-          <%= user.first_name %>
-          <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
-        </div>
+      <%= link_to conversation_messages_path(conversation), :class => "mail-item" do %>
+        <%= recipient.first_name %>
+        <% if conversation.messages.first.nil? %>
+        <p>Seja o primeiro em escrever!</p>
+        <% elsif conversation.messages.last.user == recipient %>
+        <p class="chat-answer"><%= conversation.messages.last.body %></p>
+        <% else %>
+        <p class="chat-answer">Você: <%= conversation.messages.last.body %></p>
+        <% end %>
+        <%= conversation.messages.last.created_at.in_time_zone("Brasilia").strftime("%d/%m/%Y %H:%M") %>
       <% end %>
     <% end %>
+
   </div>
 </div>
+<!--<div class="chat-contacts">
+  <% if @empty_conversations.present? %>
+    <h3>Chats iniciados</h3>
+    <% @empty_conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <% recipient = conversation.recipient %>
+      <% else %>
+        <% recipient = conversation.sender %>
+      <% end %>
+      <div class=”item”>
+        <%= recipient.first_name %>
+        <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: recipient.id), method: 'post' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+-->

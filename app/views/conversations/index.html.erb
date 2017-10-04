@@ -1,0 +1,103 @@
+<div class="mailbox-title">
+  <h4>Caixa de mensagens</h4>
+  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+</div>
+<div class="mail-total hidden-xs hidden-sm">
+  <div class="mailbox">
+    <% @mine_conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <% recipient = conversation.recipient %>
+      <% else %>
+        <% recipient = conversation.sender %>
+      <% end %>
+
+      <%= link_to conversation_messages_path(conversation), :class => "mail-item" do %>
+        <%= recipient.artistic_name %>
+        <% if conversation.messages.first.nil? %>
+          <p>Seja o primeiro em escrever!</p>
+        <% elsif conversation.messages.last.user != current_user && conversation.messages.last.read == false %>
+          <% if conversation.messages.last.body.length > 40 %>
+            <p class="chat-answer-unread"><%= conversation.messages.last.body[0..25] %>...</p>
+          <% else %>
+            <p class="chat-answer-unread"><%= conversation.messages.last.body %></p>
+          <% end %>
+        <% else %>
+          <% if conversation.messages.last.body.length > 40 %>
+            <p class="chat-answer"><%= conversation.messages.last.body[0..25] %>...</p>
+          <% else %>
+            <p class="chat-answer"><%= conversation.messages.last.body %></p>
+          <% end %>
+        <% end %>
+        <%= conversation.messages.last.created_at.in_time_zone("Brasilia").strftime("%d/%m/%Y %H:%M") %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+
+<div class="mini-mail-total hidden-md hidden-lg">
+  <div class="mini-mailbox">
+    <% @mine_conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <% recipient = conversation.recipient %>
+      <% else %>
+        <% recipient = conversation.sender %>
+      <% end %>
+
+      <%= link_to conversation_messages_path(conversation), :class => "mail-item" do %>
+        <div class="container-fluid container-chat">
+          <div class="row">
+            <div class="col-xs-6">
+              <%= recipient.artistic_name %>
+            </div>
+            <div class="col-xs-6 chat-time">
+              <% if conversation.messages.last.created_at.strftime("%B %d, %Y") == Time.now.strftime("%B %d, %Y") %>
+                <%= conversation.messages.last.created_at.in_time_zone("Brasilia").strftime("%H:%M") %>
+              <% else %>
+                <%= conversation.messages.last.created_at.in_time_zone("Brasilia").strftime("%d/%m/%Y") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <% if conversation.messages.first.nil? %>
+                <p>Seja o primeiro em escrever!</p>
+              <% elsif conversation.messages.last.user != current_user && conversation.messages.last.read == false %>
+                <% if conversation.messages.last.body.length > 40 %>
+                  <p class="chat-answer-unread"><%= conversation.messages.last.body[0..25] %>...</p>
+                <% else %>
+                  <p class="chat-answer-unread"><%= conversation.messages.last.body %></p>
+                <% end %>
+              <% else %>
+                <% if conversation.messages.last.body.length > 40 %>
+                  <p class="chat-answer"><%= conversation.messages.last.body[0..25] %>...</p>
+                <% else %>
+                  <p class="chat-answer"><%= conversation.messages.last.body %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+<!--<div class="chat-contacts">
+  <% if @empty_conversations.present? %>
+    <h3>Chats iniciados</h3>
+    <% @empty_conversations.each do |conversation| %>
+      <% if conversation.sender == current_user %>
+        <% recipient = conversation.recipient %>
+      <% else %>
+        <% recipient = conversation.sender %>
+      <% end %>
+      <div class=”item”>
+        <%= recipient.first_name %>
+        <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: recipient.id), method: 'post' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+-->

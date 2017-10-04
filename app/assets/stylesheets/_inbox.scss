@@ -1,0 +1,59 @@
+.mail-total {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+.mailbox {
+  width: 80%;
+}
+
+.mini-mail-total {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+}
+.mini-mailbox {
+  width: 100%;
+}
+
+.mail-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0px;
+  text-decoration: none;
+  color: black;
+  border: 0.4px solid gray;
+  border-radius: 5px;
+  background-color: white;
+  &:hover {
+    background-color: rgba(143, 0, 58, 0.2);
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.chat-answer {
+  font-weight: lighter;
+  color: gray;
+}
+
+.chat-answer-unread {
+  font-weight: bold;
+  color: rgba(143, 0, 58, 0.8);
+}
+
+.container-chat {
+  margin: 0px;
+  width: 100%;
+}
+
+.chat-time {
+  text-align: right;
+}
+
+.mailbox-title {
+  margin: 15px;
+  text-align: center;
+  color: rgb(143, 0, 58);
+}

@@ -4,15 +4,6 @@ class ConversationsController < ApplicationController
     @users = User.all
     @conversations = policy_scope(Conversation)
     @mine_conversations = @conversations.mine(current_user.id)
-    @started_conversations = []
-    @empty_conversations = []
-    @mine_conversations.each do |conversation|
-      if conversation.messages.first.nil?
-        @empty_conversations << conversation
-      else
-        @started_conversations << conversation
-      end
-    end
   end
 
   def create

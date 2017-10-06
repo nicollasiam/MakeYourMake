@@ -21,6 +21,8 @@ gem 'devise'
 # Pundit fot authorization
 gem 'pundit'
 
+# Pagination
+gem 'kaminari'
 
 # Faker for db
 gem 'faker'

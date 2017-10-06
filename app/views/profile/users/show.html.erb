@@ -14,9 +14,7 @@
           User.description </p>
         </div>
         <div class="make-user">
-          <% if @user.facebook_picture_url.present? %><%= image_tag @user.facebook_picture_url %>
-            <% else %> <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
-          <% end %>
+          <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
         </div>
       </div>
 
@@ -30,6 +28,10 @@
             <div class="banner-user-description">
               <%= @user.artistic_name %>
             </div>
+            <div class="banner-user-likes">
+              <p><i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @user.liked_makes.count %></p>
+            </div>
           </div>
         </div>
         <div class="user-contact">
@@ -42,7 +44,7 @@
             </button>
           <% else %>
             <button type="button" class="btn btn-user hidden-xs" data-toggle="modal" data-target="#mymodal">
-              Peça seu orçamento
+              Entre em contato
             </button>
           <% end %>
 

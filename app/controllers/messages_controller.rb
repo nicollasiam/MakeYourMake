@@ -23,6 +23,16 @@ class MessagesController < ApplicationController
       end
     end
     @message = @conversation.messages.new
+    if @conversation.sender == current_user
+      @listener = @conversation.recipient
+    else
+      @listener = @conversation.sender
+    end
+    if @messages[0].body.nil?
+      @first_message = true
+    end
+
+
   end
 
   def new

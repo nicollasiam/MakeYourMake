@@ -3,12 +3,11 @@
     <p>Álbum de inspirações<br>
     <i class="fa fa-heart-o" aria-hidden="true"></i></p>
   </div>
-
   <div class="my-makes-wrapper">
     <div class="container">
-    <% @liked_makes.each do |liked_make| %>
-      <%= link_to liked_make.make.name, make_path(liked_make.make) %>
-    <% end %>
+      <div class="row">
+        <%= render partial: 'profile/users/makes_container', locals: { makes: @makes } %>
+      </div> <!-- End: .row -->
     </div> <!-- End: .container -->
   </div>
 </div> <!-- End: .user-makes -->

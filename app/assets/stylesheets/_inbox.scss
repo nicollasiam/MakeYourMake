@@ -1,26 +1,10 @@
-.mail-total {
-  display: flex;
-  justify-content: center;
-  margin: 30px;
-}
 .mailbox {
-  width: 80%;
-}
-
-.mini-mail-total {
-  display: flex;
-  justify-content: center;
-  margin: 30px 0px;
-}
-.mini-mailbox {
-  width: 100%;
+  margin: 20px;
 }
 
 .mail-item {
-  display: flex;
   width: 100%;
-  justify-content: space-between;
-  padding: 0px;
+  padding: 15px;
   text-decoration: none;
   color: black;
   border: 0.4px solid gray;
@@ -33,27 +17,91 @@
   }
 }
 
-.chat-answer {
+.answers {
+  text-align: center;
+}
+
+.answer {
   font-weight: lighter;
   color: gray;
 }
 
-.chat-answer-unread {
+.answer-unread {
   font-weight: bold;
   color: rgba(143, 0, 58, 0.8);
 }
 
-.container-chat {
-  margin: 0px;
-  width: 100%;
+
+.mailbox-title {
+  margin: 15px;
+  text-align: center;
+  color: rgb(143, 0, 58);
 }
 
 .chat-time {
   text-align: right;
 }
 
-.mailbox-title {
-  margin: 15px;
+
+.chat-total {
+  background-color: #F4F4F4;
+}
+
+.balloon {
+  padding: 10px;
+  line-break: break-all;
+  display: block;
+  min-width: 150px;
+  border-top: solid 1px rgba(48, 0, 18, 0.5)
+}
+
+
+
+.balloon-time {
+  font-weight: lighter;
+  font-size: 13px;
+  text-align: right;
+}
+
+.chat-content {
+  padding-top: 20px;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.chat-identification {
+  word-spacing: 10px;
+}
+
+.chat-title {
   text-align: center;
+  padding: 15px;
+  display: block;
+  text-decoration: none;
   color: rgb(143, 0, 58);
+  &:hover {
+    color: rgb(143, 0, 58);
+  }
+}
+
+.submit-chat {
+  text-align: center;
+  padding: 30px;
+  word-spacing: 20px;
+  color: rgb(143, 0, 58);
+  a {
+    color: rgb(143, 0, 58);
+    text-decoration: none;
+  }
+}
+
+
+input#two{
+  background:none;
+  border:none;
+}
+
+.first-message {
+  text-align: center;
+  padding: 10px;
 }

@@ -6,12 +6,22 @@
           <h3><strong><%= @user.artistic_name %></strong></h3>
           <p><i class="fa fa-envelope-o" aria-hidden="true"></i>
           <%= @user.email %></p>
-          <p><i class="fa fa-phone" aria-hidden="true"></i>
-          (<%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %></p>
-          <p><i class="fa fa-map-marker" aria-hidden="true"></i>
-          User.city</p>
-          <p><i class="fa fa-comment-o" aria-hidden="true"></i>
-          User.description </p>
+          <% if @user.telephone_number.present? %>
+            <p>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %>
+            </p>
+          <% end %>
+          <% if @user.address.present? %>
+            <p>
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              @user.address.city
+            </p>
+          <% end %>
+          <p>
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+            <%= @user.description %>
+          </p>
         </div>
         <div class="make-user">
           <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
@@ -43,9 +53,10 @@
               <%= link_to "Criar nova make", new_profile_make_path %>
             </button>
           <% else %>
-            <button type="button" class="btn btn-user hidden-xs" data-toggle="modal" data-target="#mymodal">
-              Entre em contato
-            </button>
+
+            <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
+
+
           <% end %>
 
           <div class="shared-buttons">

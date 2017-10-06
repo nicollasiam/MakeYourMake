@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   resources :types, only: :show
 
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
 
   get '/institutional' => 'pages#institutional'
   get '/policy' => 'pages#policy'

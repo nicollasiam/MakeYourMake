@@ -1,6 +1,10 @@
 class Profile::LikedMakesController < ApplicationController
   def index
     @liked_makes = policy_scope(LikedMake).where(user: current_user)
+    @makes = []
+    @liked_makes.each do |liked_make|
+      @makes << liked_make.make
+    end
   end
 
   def create

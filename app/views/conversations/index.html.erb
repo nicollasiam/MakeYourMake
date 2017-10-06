@@ -1,0 +1,57 @@
+<div class="mailbox-title">
+  <h4>Caixa de mensagens</h4>
+  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+</div>
+<div class="mailbox">
+  <% @mine_conversations.each do |conversation| %>
+    <% if conversation.sender == current_user %>
+      <% recipient = conversation.recipient %>
+    <% else %>
+      <% recipient = conversation.sender %>
+    <% end %>
+
+    <%= link_to conversation_messages_path(conversation) do %>
+      <div class="container-fluid mail-item">
+        <div class="row">
+          <div class="col-xs-8">
+              <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+            <% if  recipient.artistic_name.length > 17 %>
+              <%= recipient.artistic_name[0..15]+"..." %>
+            <% else %>
+              <%= recipient.artistic_name %>
+            <% end %>
+
+
+          </div>
+          <div class="col-xs-4 chat-time">
+            <% if conversation.messages.last.message_time.strftime("%B %d, %Y") == Time.now.strftime("%B %d, %Y") %>
+
+              <%= conversation.messages.last.message_time.strftime("%H:%M") %>
+            <% else %>
+              <%= conversation.messages.last.message_time.strftime("%d/%m/%Y") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-6 col-sm-offset-4 col-sm-4">
+            <% if conversation.messages.first.nil? %>
+              <p>Seja o primeiro em escrever!</p>
+            <% elsif conversation.messages.last.user != current_user && conversation.messages.last.read == false %>
+              <% if conversation.messages.last.body.length > 40 %>
+                <p class="answer-unread"><%= conversation.messages.last.body[0..25] %>...</p>
+              <% else %>
+                <p class="answer-unread"><%= conversation.messages.last.body %></p>
+              <% end %>
+            <% else %>
+              <% if conversation.messages.last.body.length > 40 %>
+                <p class="answer"><%= conversation.messages.last.body[0..25] %>...</p>
+              <% else %>
+                <p class="answer"><%= conversation.messages.last.body %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

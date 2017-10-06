@@ -1,34 +1,73 @@
-<% if @over_ten %>
-  <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
-
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-      <div class=”item”>
-        <div class=”content”>
-          <div class=”header”>
-            <strong><%= user.first_name %></strong><%= message.message_time %>
-          </div>
-          <div class=”list”>
-            <div class=”item”>
-              <i class=”right triangle icon”></i>
-              <%= message.body %>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="chat-total">
+  <% if @first_message %>
+    <div class="first-message">
+      <strong>Mande sua primeira mensagem para <%= @listener.artistic_name %></strong>
+    </div>
+  <% end %>
+  <div class="chat">
+    <% if @over_ten %>
+      <%= link_to '?m=all', class: "chat-title" do %>
+        <i class="fa fa-angle-double-up fa-3x" aria-hidden="true"></i>
+      <% end %>
     <% end %>
+
+    <div class="ui segment">
+      <% @messages.each do |message| %>
+
+        <% if message.body %>
+          <% if message.user == current_user %>
+            <div class="balloon">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-10 chat-identification">
+                    <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+                    <strong>eu</strong>
+                  </div>
+                  <div class="col-xs-2 balloon-time">
+                    <%= message.message_time.strftime("%H:%M") %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 chat-content">
+                    <%= message.body.gsub(/\n/, '<br/>').html_safe %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="balloon">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-10 chat-identification">
+                    <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+                    <strong><%= message.user.artistic_name %></strong>
+                  </div>
+                  <div class="col-xs-2 balloon-time">
+                    <%= message.message_time.strftime("%H:%M") %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 chat-content">
+                    <%= message.body.gsub(/\n/, '<br/>').html_safe %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+    <div class=”field”>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    <div class="submit-chat">
+      <%= link_to "Conversas", conversations_path %>
+      <%= f.submit "Enviar", class: "submit", id: "two" %>
+      <!-- Se clica no REsponder com o texto em branco, o botão não funciona mais, tem que carregar a página.-->
+    </div>
   <% end %>
 </div>
-
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class=”field”>
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-  <div>
-    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
-  </div>
-<% end %>

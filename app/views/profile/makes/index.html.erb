@@ -1,22 +1,5 @@
 <div class="user-makes">
-  <div class="show-menu">
-    <p>Essas são todas as makes criadas por você<br>
-    <i class="fa fa-heart-o" aria-hidden="true"></i></p>
 
-    <!-- Show filter options if current user is the profile owner -->
-    <% if @user == current_user %>
-      <ul id="input-filters" class="list-inline" data-id="<%= current_user.id %>">
-        <li><input id="non_public" class="checkbox" type="checkbox" name="nao_publico"><span>  Apenas Makes não públicas</span></li>
-        <li><input id="no_photos" class="checkbox" type="checkbox" name="sem_foto"> Apenas Makes sem foto</li>
-      </ul>
-    <% end %>
-  </div>
 
-  <div class="my-makes-wrapper">
-    <div class="container">
-      <div class="row">
-        <%= render partial: 'profile/users/makes_container', locals: { makes: @makes } %>
-      </div> <!-- End: .row -->
-    </div> <!-- End: .container -->
-  </div>
+
 </div> <!-- End: .user-makes -->

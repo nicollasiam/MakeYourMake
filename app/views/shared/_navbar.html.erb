@@ -29,7 +29,7 @@
           <li class="dropdown">
             <div class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
               <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
-              <span class="current-user-name"><%= current_user.artistic_name %></span>
+              <span class="current-user-name"><%= current_user.artistic_name.present? ? current_user.artistic_name : current_user.first_name %></span>
             </div>
             <ul class="dropdown-menu">
               <% if current_user.professional %>

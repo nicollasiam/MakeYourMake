@@ -47,11 +47,7 @@
         <div class="user-contact">
 
           <% if  current_user && @user == current_user %>
-
-
-            <button type="button" class="btn btn-user hidden-xs" onclick="">
-              <%= link_to "Criar nova make", new_profile_make_path %>
-            </button>
+            <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user hidden-xs"%>
           <% else %>
 
             <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>

@@ -24,9 +24,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # Aditional parameters for user
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :first_name, :last_name, :artistic_name, :professional,
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :first_name, :last_name, :artistic_name, :professional, :description,
                                       address_attributes: [:street, :number, :user_id, :complement, :zip_code, :city, :district, :state, :public],
                                       telephone_number_attributes: [:ddd, :number]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :first_name, :last_name, :artistic_name, :professional, :id, :description,
+                                      address_attributes: [:street, :number, :id, :complement, :zip_code, :city, :district, :state, :public],
+                                      telephone_number_attributes: [:id, :ddd, :number]])
   end
 end
 

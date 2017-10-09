@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   # We need this becouse addresses and telephone numbers are in another model
   # They are not a column in users table
-  accepts_nested_attributes_for :address, :telephone_number
+  accepts_nested_attributes_for :address, :telephone_number, update_only: true, allow_destroy: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

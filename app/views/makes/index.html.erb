@@ -10,12 +10,10 @@
     <div class="content-text">
       <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
       <p>Crie a sua conta e começe agora!</p>
-      <button class="btn-user-index">
-        <%= link_to new_user_registration_path do %>
+      <%= link_to new_user_registration_path, class: "btn-user-index" do %>
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
         Cadastrar com o E-mail
-        <% end %>
-      </button>
+      <% end %>
       <button class="btn-user-facebook">
         <i class="fa fa-facebook" aria-hidden="true"></i>
         Cadastrar com o Facebook
@@ -136,7 +134,11 @@
       <% @types.each do |type| %>
         <div class="col-xs-12 col-md-4">
           <%= link_to type_path(type) do %>
-            <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
+            <% if type.make_types.first.make.images.first %>
+              <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
+            <% else %>
+            <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= "http://res.cloudinary.com/dzvhno4wr/image/upload/v1505850835/woman-isolated-brush-orange-makeup-beauty-928759-pxhere.com_chlgle.jpg" %>')">
+            <% end %>
               <div class="type-card-content text-center">
                 <hr>
                 <h2><%= type.name %></h2>

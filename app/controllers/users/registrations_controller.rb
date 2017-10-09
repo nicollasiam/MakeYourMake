@@ -8,10 +8,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
+  def edit
+
+  end
+
   protected
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     after_sign_in_path_for(resource)
+  end
+  def after_update_path_for(resource)
+    profile_user_path(resource)
   end
 end

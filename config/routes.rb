@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :profile do
     resources :users, only: :show
-    resources :makes, except: :show
+    resources :makes, except: [:show, :index]
     resources :liked_makes, only: [:index, :create, :destroy]
   end
 

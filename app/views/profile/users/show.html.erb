@@ -15,7 +15,7 @@
           <% if @user.address.present? %>
             <p>
               <i class="fa fa-map-marker" aria-hidden="true"></i>
-              @user.address.city
+              <%= @user.address.city %>
             </p>
           <% end %>
           <p>

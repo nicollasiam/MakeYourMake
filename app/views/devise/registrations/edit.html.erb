@@ -19,7 +19,9 @@
 
               <%= f.input :password, autocomplete: "off", hint: "Deixe em branco se você não quer alterar a senha", label: "Senha", required: false %>
               <%= f.input :password_confirmation, label: "Repita a sua senha", required: false %>
+              <% if current_user.provider.nil? %>
               <%= f.input :current_password, hint: "Coloque a sua senha atual para atualizar as informações", required: true, label: "Senha atual" %>
+              <% end %>
             </div>
             <div class="col-xs-12 col-sm-6">
               <%= f.input :professional, label: 'Sou maquiador e quero mostrar o meu trabalho', wrapper_html: { class: 'col-xs-12 text-left' } %>

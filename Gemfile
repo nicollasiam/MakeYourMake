@@ -42,6 +42,8 @@ gem 'validates_email_format_of'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+#Facebook  auth
+gem 'omniauth-facebook'
 
 # Cloudnary gem ------- Delete after
 gem 'cloudinary'

@@ -21,6 +21,7 @@ class Profile::UsersController < ApplicationController
     end
 
     @banner_makes = @makes.select do |make|
+      raise
       make.images.first.present?
     end
     @review = Review.new

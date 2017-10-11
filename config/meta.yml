@@ -1,0 +1,5 @@
+meta_product_name: "MakeYourMake"
+meta_title: "MyM - Maquiadores e maquiagens"
+meta_description: "Encontre os melhores maquiadores perto de você e inspirações para criar seu próprio estilo."
+meta_image: "http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg"                       # should exist in `app/assets/images/`
+twitter_account: "@makeyourmake_"

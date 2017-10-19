@@ -18,7 +18,16 @@
         <i class="fa fa-facebook" aria-hidden="true"></i>
         Cadastrar com o Facebook
       <% end %>
+
     </div>
+    <div class="nav-search-form">
+        <form class="navbar-form" role="search" action="#">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <div class="form-group">
+            <input type="text" name="busca" placeholder="Busque maquiador, maquiage ou cidade">
+          </div>
+        </form>
+      </div>
   </div>
 <% end %>
 
@@ -124,14 +133,6 @@
 <% end %>
 <div class="types-wrapper">
   <div class="container">
-    <% if params[:busca].present? %>
-      <h2 class="text-center" style="color: #777">Não encontrou a make que estava procurando?</h2>
-      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias irá te ajudar!</h4>
-    <% else %>
-      <div class="content-text-card">
-        <p><i>Confira as nossas principais categorias!</i></p>
-      </div>
-    <% end %>
     <div class="categories-wrapper">
       <div class="container">
         <div class="row">
@@ -145,21 +146,51 @@
         </div>
       </div>
     </div>
+    <% if params[:busca].present? %>
+      <h2 class="text-center" style="color: #777">Não encontrou a make que estava procurando?</h2>
+      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas makes irá te ajudar!</h4>
+    <% else %>
+      <div class="content-text-card">
+        <p><i>Confira as makes mais votadas!</i></p>
+      </div>
+    <% end %>
     <div class="row">
-      <% @types.each do |type| %>
+      <% @top_makes.each do |top_make| %>
         <div class="col-xs-12 col-md-4">
-          <%= link_to type_path(type) do %>
-            <% if type.make_types.first %>
-              <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path type.make_types.first.make.images.first.image_url %>')">
-            <% else %>
-              <div class="type-card" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= "http://res.cloudinary.com/dzvhno4wr/image/upload/v1505850835/woman-isolated-brush-orange-makeup-beauty-928759-pxhere.com_chlgle.jpg" %>')">
+          <div class="make-card">
+            <%= link_to make_path(top_make) do %>
+              <div class="make-img" style="background-image: url('<%= cl_image_path top_make.images.first.image_url %>')"></div>
             <% end %>
-              <div class="type-card-content text-center">
-                <hr>
-                <h2><%= type.name %></h2>
+            <div class="make-content">
+              <div class="mini-card-information">
+                <div class="likes-counting">
+                  <i class="fa fa-heart"></i>
+                  <div class="likes-counting-number" id="likes-make<%= top_make.id %>">
+                    <%= top_make.likes_count %>
+                  </div>
+                </div>
+                <div class="reviews-counting">
+                  <i class="fa fa-comment-o" aria-hidden="true"></i>
+                  <%= top_make.reviews.count %>
+                </div>
+              </div>
+              <div class="card-information">
+                <div class="make-content-text">
+                  <h4><%= top_make.name %></h4>
+                  <p>Conhece a <strong><%= link_to top_make.user.artistic_name, profile_user_path(top_make.user.id)%></strong></p>
+                </div>
+                <% if make_is_liked_by_user?(top_make) %>
+                  <%= link_to '#', class: 'unlike_button', 'data-id': top_make.id do %>
+                    <i class="fa fa-heart"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to '#', class: 'like_button', 'data-id': top_make.id do %>
+                    <i class="fa fa-heart-o"></i>
+                  <% end %>
+                <% end %>
               </div>
             </div>
-          <% end %>
+          </div>
         </div>
       <% end %>
     </div>

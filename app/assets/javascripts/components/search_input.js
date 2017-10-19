@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
   // Strech up the input size
   $('.nav-search-form form input').on('focus', function() {
     if ($(window).width() + 15 <= 571) {
@@ -17,3 +17,4 @@ $(document).ready(function() {
     $(this).attr('placeholder', '');
   });
 })
+*/

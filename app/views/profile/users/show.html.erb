@@ -51,14 +51,14 @@
           </div>
         </div>
         <div class="user-contact">
-
-          <% if  current_user && @user == current_user %>
-            <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user hidden-xs"%>
+          <% if current_user %>
+            <% if  current_user && @user == current_user %>
+              <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user hidden-xs"%>
+            <% else %>
+              <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
+            <% end %>
           <% else %>
-
-            <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
-
-
+            <%= link_to "Fale comigo!", new_user_session_path, :class => "btn btn-user hidden-xs" %>
           <% end %>
 
           <div class="shared-buttons">

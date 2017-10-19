@@ -14,8 +14,8 @@
       <div class="container-fluid mail-item">
         <div class="row">
           <div class="col-xs-8">
-            <% if current_user.facebook_picture_url %>
-              <img class="round-avatar" src="<%= current_user.facebook_picture_url %>">
+            <% if recipient.facebook_picture_url %>
+              <img class="round-avatar" src="<%= recipient.facebook_picture_url %>">
             <% else %>
               <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
             <% end %>

@@ -20,7 +20,7 @@ class MakesController < ApplicationController
       end
     end
 
-    @top_makes = Make.order(likes_count: :desc).limit(3)
+    @top_makes = Make.order(likes_count: :desc).limit(6)
     @types = policy_scope(Type).order(:name)
   end
 

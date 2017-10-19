@@ -1,7 +1,6 @@
 .footer-global {
-  padding: 40px;
   width: 100%;
-  background-color: #8F003A;
+  background-color: #00040A;
   color: white;
 
   h3 {
@@ -25,28 +24,28 @@
 
     a:hover {
       opacity: 0.8;
-      color: black;
     }
 }
 
 .footer-company {
+  height: 115px;
+  display: flex;
+  align-items: center;
   text-align: center;
+  justify-content: center;
   padding: 20px;
+  font-size: 35px;
   p {
     text-align: justify;
   }
 }
 
-.footer-social {
-  text-align: center;
-  padding: 20px;
-}
-
-.footer-social-links {
-  font-size: 35px;
+.social-link {
+  margin: 10px;
 }
 
 .footer-navegation {
+  height: 115px;
   padding: 20px;
   text-align: center;
 }
@@ -61,6 +60,7 @@
   z-index: -1;
   position: fixed;
   bottom: 0;
+  color: #00040A;
 }
 
 

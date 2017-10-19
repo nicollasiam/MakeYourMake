@@ -1,39 +1,34 @@
 .make-card {
   position: relative;
-  height: 520px;
+  height: 463px;
+  width: 350px;
   margin-top: 15px;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 1px #d8d8d8;
-
-  .parent-img {
+  border-radius: 7px 7px 0 0;
+  background-color: white;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  border: 0.5px solid #ccc;
+  .make-img {
     width: 100%;
-    height: 450px;
-    border-radius: 4px 4px 0 0;
-    overflow: hidden;
+    height: 350px;
+    border-radius: 7px 7px 0 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
 
-    &:hover .make-img,
-    &:focus .make-img {
-      transform: scale(1.1);
-      opacity: .8;
-    }
-
-    .make-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 4px 4px 0 0;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: all .2s ease-in-out;
-    }
   }
 
+
   .make-content {
-    height: 70px;
+    height: 113px;
 
     .make-content-text {
       flex-grow: 1;
       margin-left: 20px;
+      color: #00040A;
 
       h4 {
         margin-bottom: 3px;
@@ -41,6 +36,10 @@
 
       p {
         font-weight: lighter;
+        a {
+          text-decoration: none;
+          color: #00040A;
+        }
       }
     }
 
@@ -49,7 +48,7 @@
 
       i {
         font-size: 25px;
-        color: #8F003A;
+        color: #AE0014;
         transition: all .2s ease;
 
         &:hover {
@@ -59,3 +58,32 @@
     }
   }
 }
+
+.mini-card-information {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  justify-content: center;
+  color: rgb(51, 51, 51);
+  background-color: white;
+}
+
+.card-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviews-counting {
+  margin-left: 20px;
+}
+
+.likes-counting {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .likes-counting-number {
+    margin-left: 4px;
+  }
+
+}
+

@@ -115,12 +115,8 @@
     </div>
   </div>
 <% end %>
-
-
-
 <div class="types-wrapper">
   <div class="container">
-
     <% if params[:busca].present? %>
       <h2 class="text-center" style="color: #777">Não encontrou a make que estava procurando?</h2>
       <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas categorias ira te ajudar!</h4>
@@ -129,7 +125,19 @@
         <p><i>Confira as nossas principais categorias!</i></p>
       </div>
     <% end %>
-
+    <div class="categories-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="list-inline text-center">
+              <% @types.each do |type| %>
+                <li><%= link_to type.name, type_path(type) %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <% @types.each do |type| %>
         <div class="col-xs-12 col-md-4">

@@ -22,29 +22,41 @@
     <div class="row">
       <% @makes.each do |make| %>
         <% if make.images.first && make.public %>
-          <div class="col-xs-12 col-sm-6 col-lg-4">
+          <div class="col-xs-12 col-sm-6 col-lg-4 makes-cards">
             <div class="make-card">
-            <%= render :partial => "shared/make_modal", :locals => {:make => make, :type => @type} %>
-            <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+            <%= link_to make_path(make) do%>
               <%#= cl_image_tag make.images.first.image_url %>
-              <div class="parent-img">
-                <div class="make-img" style="background-image: url('<%= cl_image_path make.images.first.image_url %>')"></div>
+              <div class="make-img" style="background-image: url('<%= cl_image_path make.images.first.image_url %>')">
               </div>
-            </a>
-              <div class="make-content flexbox">
-                <div class="make-content-text">
-                  <h4><%= make.name %></h4>
-                  <p><%= make.user.artistic_name %></p>
-                </div>
-                <% if make_is_liked_by_user?(make) %>
-                  <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
+            <% end %>
+              <div class="make-content">
+                <div class="mini-card-information">
+                  <div class="likes-counting">
                     <i class="fa fa-heart"></i>
+                    <div class="likes-counting-number" id="likes-make<%= make.id %>">
+                      <%= make.likes_count %>
+                    </div>
+                  </div>
+                  <div class="reviews-counting">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <%= make.reviews.count %>
+                  </div>
+                </div>
+                <div class="card-information">
+                  <div class="make-content-text">
+                    <h4><%= make.name %></h4>
+                    <p>Conhece a <strong><%= link_to make.user.artistic_name, profile_user_path(make.user.id)%></strong></p>
+                  </div>
+                  <% if make_is_liked_by_user?(make) %>
+                    <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
+                      <i class="fa fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
+                      <i class="fa fa-heart-o"></i>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= link_to '#', class: 'like_button', 'data-id': make.id do %>
-                    <i class="fa fa-heart-o"></i>
-                  <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -53,7 +65,8 @@
       <% end %>
     </div>
   </div>
-</div>
+
 <div class="pagination-links">
   <%= will_paginate @makes, :previous_label => 'Anterior', :next_label => 'Seguinte' %>
+</div>
 </div>

@@ -72,6 +72,12 @@
               </li>
               <li role="separator" class="divider"></li>
               <li>
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home color-items"></span> Página inicial
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
                   <span class="glyphicon glyphicon-log-out color-items"></span> Sair
                 <% end %>

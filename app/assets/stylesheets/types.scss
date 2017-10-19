@@ -1,4 +1,5 @@
 .categories-wrapper {
+  background-color: white;
   padding-top: 20px;
   li {
     padding-right: 5px;
@@ -8,19 +9,19 @@
       text-decoration: none;
 
       &:hover {
-        color: #8F003A;
+        color: #00040A;
       }
     }
   }
 
   .active {
-    color: #8F003A;
+    color: #00040A;
     font-weight: 600;
   }
 }
 
 .makes-wrapper {
-  background-color: #F4F4F4;
+  background-color: white;
   padding-bottom: 20px;
   .list-group {
     margin-top: 15px;
@@ -30,4 +31,9 @@
 
 .pagination-links {
   text-align: center;
+}
+
+.makes-cards {
+  display: flex;
+  justify-content: center;
 }

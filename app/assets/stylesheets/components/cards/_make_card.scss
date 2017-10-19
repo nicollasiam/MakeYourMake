@@ -8,7 +8,6 @@
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  border: 0.5px solid #ccc;
   .make-img {
     width: 100%;
     height: 350px;
@@ -18,13 +17,16 @@
     background-repeat: no-repeat;
     transition: all .2s ease-in-out;
     cursor: pointer;
-
+    -webkit-filter: grayscale(100%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+    filter: grayscale(100%);
+    &:hover {
+      -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+      filter: grayscale(0%);
+    }
   }
-
 
   .make-content {
     height: 113px;
-
     .make-content-text {
       flex-grow: 1;
       margin-left: 20px;
@@ -45,12 +47,10 @@
 
     a {
       margin-right: 20px;
-
       i {
         font-size: 25px;
         color: #AE0014;
         transition: all .2s ease;
-
         &:hover {
           font-size: 34px;
         }
@@ -87,3 +87,39 @@
 
 }
 
+.search-make-card {
+  position: relative;
+  height: 350px;
+  width: 350px;
+  margin-top: 15px;
+  border-radius: 7px 7px 0 0;
+  background-color: white;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .make-img {
+    -webkit-filter: grayscale(100%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+    filter: grayscale(100%);
+    width: 100%;
+    height: 350px;
+    border-radius: 7px 7px 0 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    &:hover {
+      -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+      filter: grayscale(0%);
+    }
+  }
+}

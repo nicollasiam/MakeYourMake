@@ -9,7 +9,7 @@ $(document).ready(function() {
   function likeMake() {
     var element = $(this);
     var make_id = element.data('id');
-
+    $(this).off('click');
     // Send AJAX to perform like action
     $.ajax({
       type: 'POST',
@@ -22,7 +22,6 @@ $(document).ready(function() {
         var likesCount = parseInt($("#likes-make" + make_id).text()) + 1;
         $("#likes-make" + make_id).load($("#likes-make" + make_id).text(likesCount));
         // Remove previous callbacks for 'click', then add the right one
-        element.unbind('click');
         element.on('click', unlikeMake);
       }
     });
@@ -34,7 +33,7 @@ $(document).ready(function() {
   function unlikeMake() {
     var element = $(this);
     var make_id = element.data('id');
-
+    $(this).off('click');
     // Send AJAX to perform like action
     $.ajax({
       type: 'DELETE',
@@ -47,7 +46,6 @@ $(document).ready(function() {
         var likesCount = parseInt($("#likes-make" + make_id).text()) - 1;
         $("#likes-make" + make_id).load($("#likes-make" + make_id).text(likesCount));
         // Remove previous callbacks for 'click', then add the right one
-        element.unbind('click');
         element.on('click', likeMake);
       }
     });

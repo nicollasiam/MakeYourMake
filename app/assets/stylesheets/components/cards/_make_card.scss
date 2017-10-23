@@ -1,13 +1,22 @@
 .make-card {
+  &:hover {
+    -moz-transform: scale(1.04);
+    -webkit-transform: scale(1.04);
+    transform: scale(1.04);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
   position: relative;
+  transition: all .2s ease-in-out;
   height: 463px;
   width: 350px;
   margin-top: 15px;
   border-radius: 7px 7px 0 0;
   background-color: white;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 7px 7px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 7px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: 7px 7px 3px 0px rgba(0,0,0,0.75);
   .make-img {
     width: 100%;
     height: 350px;
@@ -15,14 +24,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: all .2s ease-in-out;
     cursor: pointer;
-    -webkit-filter: grayscale(100%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
-    filter: grayscale(100%);
-    &:hover {
-      -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
-      filter: grayscale(0%);
-    }
   }
 
   .make-content {
@@ -75,16 +77,19 @@
 }
 .reviews-counting {
   margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .likes-counting {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  .likes-counting-number {
-    margin-left: 4px;
-  }
+}
 
+.counting-number {
+  margin-left: 4px;
 }
 
 .search-make-card {

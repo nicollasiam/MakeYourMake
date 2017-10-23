@@ -58,7 +58,11 @@
               <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
             <% end %>
           <% else %>
-            <%= link_to "Fale comigo!", new_user_session_path, :class => "btn btn-user hidden-xs" %>
+            <%= link_to '#', "data-toggle" => "modal", 'data-target' => "#email", id: "contact" do%>
+              <div class="btn btn-user">
+                Fale comigo!
+              </div>
+            <% end %>
           <% end %>
 
           <div class="shared-buttons">
@@ -102,3 +106,4 @@
 
 
 
+<%= render "shared/login" %>

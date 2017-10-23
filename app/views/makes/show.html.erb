@@ -1,0 +1,115 @@
+<div class="color-all">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="myGalley<%= @make.id %>" class="carousel slide myGallery" data-ride="carousel">
+
+          <ol class="carousel-indicators">
+            <% @make.images.each_with_index do |image,index| %>
+              <% if index == 0 %>
+                <li data-target="#myGalley<%= @make.id %>" data-slide-to="<%= index %>" class="active"></li>
+              <% else %>
+                <li data-target="#myGalley<%= @make.id %>" data-slide-to="<%= index %>"></li>
+              <% end %>
+            <% end %>
+          </ol>
+
+          <div class="carousel-inner" style=" width:100%; height: 500px !important;">
+            <% @make.images.each_with_index do |image,index| %>
+              <% if index == 0  %>
+                <div class="item active" style="background-image: url('<%= @make.images.first.image_url %>');">
+                </div>
+              <% else %>
+                <div class="item" style="background-image: url('<%= @image.image_url %>');">
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <a class="left carousel-control" href="#myGalley<%= @make.id %>" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          </a>
+          <a class="right carousel-control" href="#myGalley<%= @make.id %>" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 content-makes">
+      <h4>Criada por: <strong><%= link_to @make.user.artistic_name, profile_user_path(@make.user.id)%></strong></h4>
+      <p>
+        Gostou da make? compartilhe ela na sua rede social!
+      </p>
+    </div>
+
+    <br>
+
+    <div class="shared-buttons content-makes">
+      <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, class: "fb-share"  do %>
+      <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+      <% end %>
+      <%= link_to "whatsapp://send?text=" + request.original_url do %>
+        <i class="fa fa-whatsapp fa-3x" aria-hidden="true"></i>
+      <% end %>
+      <%= link_to "https://twitter.com/intent/tweet" + request.original_url, class: "twitter-share-button"  do %>
+        <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+      <% end %>
+    </div>
+
+    <br>
+
+    <div class="col-xs-12 col-sm-4">
+      <% if @make.types.first %>
+        <h5><strong>Veja makes parecidas</strong></h5>
+        <div class="container-fluid">
+          <div class="row">
+            <% type = @make.types.first %>
+            <% type.make_types.each_with_index do |make_type, index| %>
+              <% @a_make = make_type.make  %>
+              <% if @a_make.public && @a_make.images.first && @a_make != @make %>
+                <div class="col-xs-12 pictures-group">
+                  <div class="mini-picture" style="background-image: url('<%= @a_make.images.first.image_url %>');">
+                  </div>
+                </div>
+              <% end %>
+              <div class="col-xs-4 pictures-group">
+                <%= link_to make_path(@a_make) do %>
+                  <% if @a_make.images.length > 0 %>
+                    <div class="mini-picture" style="background-image: url('<%= @a_make.images.first.image_url %>');"></div>
+                  <% else %>
+                    <div class="mini-picture" style="background-color: #F4F4F4;"></div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-sm-8">
+      <div class="coments-photo">
+      <% if current_user %>
+        <h5><strong>Gostou da make? Deixe um comentário!!</strong></h5>
+        <input type="text" label="Comente!" id="review-text<%= @make.id %>" style="width: 100%">
+        <button data-id="<%= @make.id %>" class="review-btn">Comentar</button>
+      <% end %>
+        <ul class="show-review" id="show-review<%= @make.id %>">
+          <% @make.reviews.reverse.each do |review| %>
+            <li>
+              <h5><%= review.user.artistic_name.blank? ? "#{review.user.first_name} #{review.user.last_name}" : review.user.artistic_name %></h5>
+              <p><%= review.content %></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

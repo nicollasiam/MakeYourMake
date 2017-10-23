@@ -12,15 +12,6 @@
       <%= link_to 'MakeYourMake', root_path, class: 'navbar-brand hidden-xxs' %>
     </div>
 
-    <div class="col-xs-3 nav-search-form">
-      <form class="navbar-form" role="search" action="#">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <div class="form-group">
-          <input type="text" name="busca">
-        </div>
-      </form>
-    </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right navbar-color">
@@ -68,6 +59,12 @@
               <li>
                 <%= link_to edit_user_registration_path do %>
                   <i class="fa fa-key color-items" aria-hidden="true"></i> Conta
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home color-items"></span> Página inicial
                 <% end %>
               </li>
               <li role="separator" class="divider"></li>
@@ -126,14 +123,7 @@
       <%= link_to 'MakeYourMake', root_path, class: 'navbar-brand hidden-xxs' %>
     </div>
 
-    <div class="col-xs-3 nav-search-form">
-      <form class="navbar-form" role="search" action="#">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <div class="form-group">
-          <input type="text" name="busca">
-        </div>
-      </form>
-    </div>
+
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 

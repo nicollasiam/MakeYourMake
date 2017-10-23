@@ -1,3 +1,20 @@
 .results-wrapper {
   margin-top: -20px;
 }
+
+.form-group {
+  width: 320px;
+  color: rgb(0, 4, 10);
+  input {
+    width: inherit;
+    margin-left: 5px;
+  }
+}
+
+.navbar-form {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}

@@ -22,7 +22,7 @@ gem 'devise'
 gem 'pundit'
 
 # Pagination
-gem 'kaminari'
+gem 'will_paginate'
 
 # Faker for db
 gem 'faker'

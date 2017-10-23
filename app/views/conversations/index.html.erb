@@ -14,7 +14,11 @@
       <div class="container-fluid mail-item">
         <div class="row">
           <div class="col-xs-8">
-              <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+            <% if recipient.facebook_picture_url %>
+              <img class="round-avatar" src="<%= recipient.facebook_picture_url %>">
+            <% else %>
+              <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
+            <% end %>
             <% if  recipient.artistic_name.length > 17 %>
               <%= recipient.artistic_name[0..15]+"..." %>
             <% else %>
@@ -24,11 +28,12 @@
 
           </div>
           <div class="col-xs-4 chat-time">
-            <% if conversation.messages.last.message_time.strftime("%B %d, %Y") == Time.now.strftime("%B %d, %Y") %>
-
+            <% if conversation.messages.last %>
+              <% if conversation.messages.last.message_time.strftime("%B %d, %Y") == Time.now.strftime("%B %d, %Y") %>
               <%= conversation.messages.last.message_time.strftime("%H:%M") %>
             <% else %>
               <%= conversation.messages.last.message_time.strftime("%d/%m/%Y") %>
+            <% end %>
             <% end %>
           </div>
         </div>

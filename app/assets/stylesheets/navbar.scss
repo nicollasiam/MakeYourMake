@@ -13,7 +13,7 @@
 }
 
 
-.navbar.navbar-default {
+/*.navbar.navbar-default {
   box-shadow: 0 1px 1px 0 #d8d8d8;
   form {
     margin-top: 10px;
@@ -41,7 +41,7 @@
     }
   }
 }
-
+*/
 .navbar-logo {
   display: block;
   margin: auto;
@@ -59,8 +59,12 @@
   position: relative;
 }
 
-// Media queries
+.nav-search-form {
+  display: block;
+}
 
+// Media queries
+/*
 // Extra small devices (xs)
 @media only screen and (max-width: $screen-xs-max) and (min-width: 571px) {
   .navbar.navbar-default {
@@ -118,7 +122,8 @@
     }
   }
 }
-
+*/
 .navbar {
     margin-bottom: 0;
 }
+

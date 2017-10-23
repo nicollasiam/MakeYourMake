@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -34,6 +35,7 @@ class ApplicationController < ActionController::Base
                                       address_attributes: [:street, :number, :id, :complement, :zip_code, :city, :district, :state, :public],
                                       telephone_number_attributes: [:id, :ddd, :number]])
   end
+
 end
 
 

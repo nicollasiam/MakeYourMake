@@ -79,13 +79,13 @@
 .content-text-card {
     text-align: center;
     font-size: 26px;
-    color: #8F003A;
-    background-color: #f4f4f4;
-    padding: 20px;
+    color: #00040A;
+    background-color: white;
+    padding-top: 15px;
 }
 
 .types-wrapper {
-  background-color: #f4f4f4;
+  background-color: white;
   padding-bottom: 20px;
 }
 
@@ -120,9 +120,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   padding: 25px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }

@@ -5,6 +5,7 @@ class TypesController < ApplicationController
     @all_types = Type.all.order(:name)
     @type = Type.friendly.find(params[:id])
     @makes = policy_scope(Make).joins(:make_types).where(make_types: { type: @type })
+    @makes = @makes.paginate(page: params[:page], per_page: 3)
     authorize(@makes)
   end
 end

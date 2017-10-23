@@ -5,11 +5,12 @@
     padding-right: 5px;
 
     a {
-      color: #777;
+      color: #00040A;
       text-decoration: none;
 
       &:hover {
-        color: #00040A;
+        color: rgb(222, 92, 176);
+        font-weight: bold;
       }
     }
   }

@@ -1,0 +1,43 @@
+<div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="comercial" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-xs-10">
+            <h5 class="modal-title" id="comercial"><strong><i class="fa fa-user-o color-items" aria-hidden="true"></i> Entrar / Cadastrar</strong></h5>
+          </div>
+          <div class="col-xs-2">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="logo">
+          <%= cl_image_tag("https://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_280/v1507734404/mak_krvuyz.png") %>
+        </div>
+        <div class="cadastrar-modal">
+          <h2>
+            Não faz parte?
+          </h2>
+          <%= link_to new_user_registration_path, class: "btn-user-index" do %>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            Cadastrar com o E-mail
+          <% end %>
+          <%= link_to omniauth_authorize_path(:user, :facebook), class: "btn-user-facebook" do %>
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            Cadastrar com o Facebook
+          <% end %>
+        </div>
+        <hr>
+        <div class="login-modal">
+          <h2>Já faz parte da comunidade.</h2>
+          <%= link_to new_user_session_path do %>
+            <span class="glyphicon glyphicon-log-in color-items"></span> Entrar
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

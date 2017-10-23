@@ -37,7 +37,7 @@
       <div class="row">
         <!-- Found Makes. Load makes cards -->
         <% if @makes.length > 0 %>
-          <h2 class="text-center" style="color: #777">Encontramos <%= @makes.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
+          <h2 class="text-center">Encontramos <%= @makes.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
           <% @makes.each do |make| %>
             <div class="col-xs-12 col-sm-6 col-lg-4">
               <div class="make-card">
@@ -48,13 +48,15 @@
                   <div class="mini-card-information">
                     <div class="likes-counting">
                       <i class="fa fa-heart"></i>
-                      <div class="likes-counting-number" id="likes-make<%= make.id %>">
+                      <div class="counting-number" id="likes-make<%= make.id %>">
                         <%= make.likes_count %>
                       </div>
                     </div>
                     <div class="reviews-counting">
                       <i class="fa fa-comment-o" aria-hidden="true"></i>
-                      <%= make.reviews.count %>
+                      <div class="counting-number">
+                        <%= make.reviews.count %>
+                      </div>
                     </div>
                   </div>
                   <div class="card-information">
@@ -79,7 +81,7 @@
 
         <!-- No makes found. Check if any user was found -->
         <% elsif @users.length > 0 %>
-          <h2 class="text-center" style="color: #777">Encontramos <%= @users.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
+          <h2 class="text-center">Encontramos <%= @users.length %> maneiras para você ficar linda com '<%= params[:busca] %>'</h2>
           <% @users.each do |user| %>
             <div class="col-xs-12 col-sm-6 col-lg-4">
               <div class="search-make-card">
@@ -100,7 +102,7 @@
 
           <!-- No users found. Check if any address was found -->
         <% elsif @addresses.length > 0 %>
-          <h2 class="text-center" style="color: #777">Encontramos <%= @addresses.length %> maneiras para você ficar linda em '<%= params[:busca] %>'</h2>
+          <h2 class="text-center">Encontramos <%= @addresses.length %> maneiras para você ficar linda em '<%= params[:busca] %>'</h2>
           <% @addresses.each do |address| %>
             <!-- Show only if user is professional -->
             <% if address.user.professional %>
@@ -125,7 +127,7 @@
 
         <!-- Neither makes or users found -->
         <% else %>
-          <h2 class="text-center" style="color: #777">Desculpe, não encontramos o que você deseja</h2>
+          <h2 class="text-center">Desculpe, não encontramos o que você deseja</h2>
         <% end %>
       </div>
     </div>
@@ -147,8 +149,8 @@
       </div>
     </div>
     <% if params[:busca].present? %>
-      <h2 class="text-center" style="color: #777">Não encontrou a make que estava procurando?</h2>
-      <h4 class="text-center" style="color: #777">Temos certeza que uma de nossas makes irá te ajudar!</h4>
+      <h2 class="text-center">Não encontrou a make que estava procurando?</h2>
+      <h4 class="text-center">Temos certeza que uma de nossas makes irá te ajudar!</h4>
     <% else %>
       <div class="content-text-card">
         <p><i>Confira as makes mais votadas!</i></p>
@@ -165,13 +167,15 @@
               <div class="mini-card-information">
                 <div class="likes-counting">
                   <i class="fa fa-heart"></i>
-                  <div class="likes-counting-number" id="likes-make<%= top_make.id %>">
+                  <div class="counting-number" id="likes-make<%= top_make.id %>">
                     <%= top_make.likes_count %>
                   </div>
                 </div>
                 <div class="reviews-counting">
                   <i class="fa fa-comment-o" aria-hidden="true"></i>
-                  <%= top_make.reviews.count %>
+                  <div class="counting-number">
+                    <%= top_make.reviews.count %>
+                  </div>
                 </div>
               </div>
               <div class="card-information">
@@ -179,12 +183,18 @@
                   <h4><%= top_make.name %></h4>
                   <p>Conhece a <strong><%= link_to top_make.user.artistic_name, profile_user_path(top_make.user.id)%></strong></p>
                 </div>
-                <% if make_is_liked_by_user?(top_make) %>
-                  <%= link_to '#', class: 'unlike_button', 'data-id': top_make.id do %>
-                    <i class="fa fa-heart"></i>
+                <% if current_user  %>
+                  <% if make_is_liked_by_user?(top_make) %>
+                    <%= link_to '#', class: 'unlike_button', 'data-id': top_make.id do %>
+                      <i class="fa fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to '#', class: 'like_button', 'data-id': top_make.id do %>
+                      <i class="fa fa-heart-o"></i>
+                    <% end %>
                   <% end %>
                 <% else %>
-                  <%= link_to '#', class: 'like_button', 'data-id': top_make.id do %>
+                  <%= link_to '#', "data-toggle" => "modal", 'data-target' => "#email", id: "contact" do %>
                     <i class="fa fa-heart-o"></i>
                   <% end %>
                 <% end %>
@@ -197,3 +207,4 @@
   </div>
 </div>
 
+<%= render "shared/login" %>

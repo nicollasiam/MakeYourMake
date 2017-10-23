@@ -64,6 +64,8 @@
 }
 
 .btn-user-facebook {
+  margin-top: 15px;
+  display: inline-block;
   font-size: 15px;
   padding: 7px;
   background-color: #3b5998;
@@ -76,23 +78,30 @@
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  &:visited {
+    text-decoration: none;
+  }
   &:hover {
+    text-decoration: none;
     a {
       color: #8F003A;
       text-decoration: none;
     }
-    opacity: 0.8;
+    opacity: 0.9;
     color: #8F003A;
     background-color: white;
   }
   a {
     color: white;
   }
+
 }
+
+
 
 .btn-user-index {
   font-size: 15px;
-  padding: 7px;
+  padding: 7.7px;
   background-color: #8F003A;
   border: 1px solid #8F003A;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
@@ -103,12 +112,16 @@
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  &:visited {
+    text-decoration: none;
+  }
   &:hover {
+    text-decoration: none;
     a {
       color: #8F003A;
       text-decoration: none;
     }
-    opacity: 0.8;
+    opacity: 0.9;
     color: #8F003A;
     background-color: white;
   }

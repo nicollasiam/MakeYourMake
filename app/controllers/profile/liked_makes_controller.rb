@@ -14,8 +14,9 @@ class Profile::LikedMakesController < ApplicationController
     liked_make = LikedMake.new
     liked_make.make = make
     liked_make.user = current_user
+    make.likes_count = make.likes_count + 1
+    make.save
     authorize(liked_make)
-
     liked_make.save
   end
 
@@ -29,6 +30,8 @@ class Profile::LikedMakesController < ApplicationController
         break
       end
     end
+    make.likes_count = make.likes_count - 1
+    make.save
 
     authorize(liked_make)
     liked_make.destroy

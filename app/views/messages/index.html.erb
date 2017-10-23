@@ -20,7 +20,11 @@
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-10 chat-identification">
-                    <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+                    <% if current_user.facebook_picture_url %>
+                      <img class="round-avatar" src="<%= current_user.facebook_picture_url %>">
+                    <% else %>
+                      <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
+                    <% end %>
                     <strong>eu</strong>
                   </div>
                   <div class="col-xs-2 balloon-time">
@@ -39,7 +43,11 @@
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-10 chat-identification">
-                    <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+                    <% if message.user.facebook_picture_url %>
+                      <img class="round-avatar" src="<%= message.user.facebook_picture_url %>">
+                    <% else %>
+                      <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
+                    <% end %>
                     <strong><%= message.user.artistic_name %></strong>
                   </div>
                   <div class="col-xs-2 balloon-time">

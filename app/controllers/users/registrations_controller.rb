@@ -8,10 +8,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
+  def update_resource(resource, params)
+    resource.update_with_password(params)
+  end
+
   protected
 
+  def update_resource(resource, params)
+    if resource.provider == "facebook"
+      params.delete("current_password")
+
+      resource.update_without_password(params)
+
+    else
+      resource.update_with_password(params)
+    end
+  end
+
   # The path used after sign up.
+
   def after_sign_up_path_for(resource)
     after_sign_in_path_for(resource)
+  end
+  def after_update_path_for(resource)
+    profile_user_path(resource)
   end
 end

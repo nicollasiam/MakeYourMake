@@ -12,46 +12,37 @@
       <%= link_to 'MakeYourMake', root_path, class: 'navbar-brand hidden-xxs' %>
     </div>
 
-    <div class="col-xs-3 nav-search-form">
-      <form class="navbar-form" role="search" action="#">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <div class="form-group">
-          <input type="text" name="busca">
-        </div>
-      </form>
-    </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right navbar-color">
         <% if user_signed_in? %>
           <!-- logged in navbar -->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" id="current-user-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.artistic_name.blank? ? "#{current_user.first_name} #{current_user.last_name}" : current_user.artistic_name %> <span class="caret color-items"></span></a>
+            <% if current_user.facebook_picture_url %>
+               <div class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+              <img class="round-avatar" src="<%= current_user.facebook_picture_url %>">
+            <% else %>
+            <div class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+              <img src="<%= 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>">
+            <% end %>
+              <span class="current-user-name"><%= current_user.artistic_name.present? ? current_user.artistic_name : current_user.first_name %></span>
+            </div>
             <ul class="dropdown-menu">
-              <li>
-                <%= link_to profile_user_path(current_user) do %>
-                  <span class="glyphicon glyphicon-user color-items"></span> Perfil
-                <% end %>
-              </li>
               <% if current_user.professional %>
-              <li role="separator" class="divider"></li>
-
-
                 <li>
-                  <%= link_to profile_makes_path do %>
-                    <span class="glyphicon glyphicon-eye-open color-items"></span> Minhas Makes
+                  <%= link_to profile_user_path(current_user) do %>
+                    <span class="glyphicon glyphicon-user color-items"></span> Perfil
                   <% end %>
                 </li>
-              <% end %>
               <li role="separator" class="divider"></li>
-
               <li>
                 <%= link_to new_profile_make_path do %>
                   <span class="glyphicon glyphicon-plus-sign color-items"></span> Cadastrar Nova Make
                 <% end %>
               </li>
               <li role="separator" class="divider"></li>
+              <% end %>
+
 
               <li>
                 <%= link_to profile_liked_makes_path do %>
@@ -62,6 +53,18 @@
               <li>
                 <%= link_to conversations_path do %>
                   <span class="glyphicon glyphicon-envelope color-items"></span> Mensagens
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <i class="fa fa-key color-items" aria-hidden="true"></i> Conta
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home color-items"></span> Página inicial
                 <% end %>
               </li>
               <li role="separator" class="divider"></li>
@@ -88,12 +91,19 @@
                   <span class="glyphicon glyphicon-user color-items"></span> Cadastrar
                 <% end %>
               </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to omniauth_authorize_path(:user, :facebook), class: "btn-user-facebook" do %>
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  Cadastrar com o Facebook
+                <% end %>
+              </li>
             </ul>
           </li>
         <% end %>
       </ul>
-      <div class="avatar">
-        <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_40/v1506956917/placeholder_vhw9ur.png' %>
+      <div class="avatar hidden-xs">
+
       </div>
 
     </div><!-- /.navbar-collapse -->
@@ -113,14 +123,7 @@
       <%= link_to 'MakeYourMake', root_path, class: 'navbar-brand hidden-xxs' %>
     </div>
 
-    <div class="col-xs-3 nav-search-form">
-      <form class="navbar-form" role="search" action="#">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <div class="form-group">
-          <input type="text" name="busca">
-        </div>
-      </form>
-    </div>
+
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
@@ -180,6 +183,13 @@
               <li>
                 <%= link_to new_user_registration_path do %>
                   <span class="glyphicon glyphicon-user color-items"></span> Cadastrar
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to omniauth_authorize_path(:user, :facebook), class: "btn-user-facebook" do %>
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  Cadastrar com o Facebook
                 <% end %>
               </li>
             </ul>

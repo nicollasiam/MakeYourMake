@@ -1,39 +1,77 @@
 <div class="user-attributes-wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="user-attributes-inner-wrapper">
-          <h2>Editar dados de cadastro <%= resource_name.to_s.humanize %></h2>
+  <div class="user-attributes-inner-wrapper">
+    <h2>Editar dados de cadastro</h2>
 
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-            <div class="form-inputs">
+      <div class="form-inputs">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
               <%= f.input :email, required: true, autofocus: true, label: "E-mail" %>
 
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
               <% end %>
+              <%= f.input :first_name, required: true, autofocus: true, label: 'Nome', wrapper_html: { class: 'col-xs-5' }, error: false %>
+              <%= f.input :last_name, required: true, label: 'Sobrenome', wrapper_html: { class: 'col-xs-7' }, error: false %>
 
               <%= f.input :password, autocomplete: "off", hint: "Deixe em branco se você não quer alterar a senha", label: "Senha", required: false %>
               <%= f.input :password_confirmation, label: "Repita a sua senha", required: false %>
+              <% if current_user.provider.nil? %>
               <%= f.input :current_password, hint: "Coloque a sua senha atual para atualizar as informações", required: true, label: "Senha atual" %>
+              <% end %>
             </div>
+            <div class="col-xs-12 col-sm-6">
+              <%= f.input :professional, label: 'Sou maquiador e quero mostrar o meu trabalho', wrapper_html: { class: 'col-xs-12 text-left' } %>
+              <% if resource.professional %>
+                <div id="professional_inputs">
+              <% else %>
+                <div id="professional_inputs" style="display: none;">
+              <% end %>
 
-            <div class="form-actions">
-              <%= f.button :submit, "Atualizar" %>
+              <%= f.input :artistic_name, label: 'Nome Artístico', input_html: { maxlength: 20 }, wrapper_html: { class: 'col-xs-12' }, error: false %>
+              <%= f.input :description, label: 'Breve descrição sobre você', input_html: { maxlength: 200 }, wrapper_html: { class: 'col-xs-12' }, error: false %>
+
+              <%= f.simple_fields_for :address do |a| %>
+                <%= a.input :zip_code, label: 'CEP', wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= a.input :street, label: 'Rua', wrapper_html: { class: 'col-xs-8' }, error: false %>
+                <%= a.input :number, label: 'Número', wrapper_html: { class: 'col-xs-2' }, error: false %>
+                <%= a.input :complement, label: 'Complemento', input_html: { maxlength: 50 }, wrapper_html: { class: 'col-xs-10' }, error: false %>
+                <%= a.input :district, label: 'Bairro', wrapper_html: { class: 'col-xs-6' }, error: false %>
+                <%= a.input :city, label: 'Cidade', wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= a.input :state, label: 'Estado', wrapper_html: { class: 'col-xs-2' }, error: false %>
+                <%= a.input :public, label: 'Quero que meu endereço seja público', wrapper_html: { class: 'col-xs-12 text-left' }, error: false %>
+              <% end %>
+
+              <%= f.simple_fields_for :telephone_number do |t| %>
+                <%= t.input :ddd, label: 'DDD', collection: [11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28, 31,
+                                                             32, 33, 34, 35, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+                                                             51, 53, 54, 55, 61, 62, 63, 64, 65, 66, 67, 68, 69, 71, 73,
+                                                             74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92,
+                                                             93, 94, 95, 96, 97, 98, 99],
+                                                             wrapper_html: { class: 'col-xs-4' }, error: false %>
+                <%= t.input :number, label: 'Telefone para contato', input_html: { maxlength: 9 }, wrapper_html: { class: 'col-xs-8' }, error: false %>
+                <%= t.input :public, label: 'Quero que meu número seja público', wrapper_html: { class: 'col-xs-12 text-left' }, error: false %>
+              <% end %>
             </div>
-          <% end %>
-
-          <h3>Deletar a minha conta</h3>
-
-          <p>Tem certeza que deseja deletar a sua conta? <u><%= link_to "Quero deletar", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></u></p>
-
-          <%= link_to "Voltar", :back  %>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Atualizar" %>
+      </div>
+    <% end %>
+
+    <h3>Deletar a minha conta</h3>
+
+    <p>Tem certeza que deseja deletar a sua conta? <u><%= link_to "Quero deletar", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></u></p>
+
+    <%= link_to "Voltar", :back  %>
   </div>
+
 </div>
 
 

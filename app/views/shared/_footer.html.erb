@@ -2,44 +2,18 @@
   <div class="content">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-4 footer-company">
-          <h3>
-            MakeYourMake
-          </h3>
-          <div class="footer-company-description">
-            <p>
-              Salvamos as fotos de maquiagens que nós gostariamos de fazer. Divulgamos os maquiadores que nós gostariamos de contratar...
-            </p>
-          </div>
+        <div class="col-xs-12 col-sm-6 footer-company">
+            <%= link_to new_user_registration_path do%>
+              <i class="fa fa-facebook-square social-link" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to new_user_registration_path do%>
+              <i class="fa fa-twitter-square social-link" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to new_user_registration_path do%>
+              <i class="fa fa-instagram social-link" aria-hidden="true"></i>
+            <% end %>
         </div>
-        <div class="col-xs-12 col-sm-4 footer-social">
-          <h3>
-            Segue a gente
-          </h3>
-          <div class="footer-social-links">
-            <%= link_to new_user_registration_path do%>
-              <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to new_user_registration_path do%>
-              <i class="fa fa-twitter-square" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to new_user_registration_path do%>
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            <% end %>
-          </div>
-          <br>
-          <h3>
-            Contato
-          </h3>
-          <div class="footer-contact">
-            <p>contato@makeyourmake.com</p>
-
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-4 footer-navegation hidden-xs">
-          <div class="footer-navegation-title">
-            <h3>MYM</h3>
-          </div>
+        <div class="col-xs-12 col-sm-6 footer-navegation">
             <div>
               <p>
                 <%= link_to "Termos de uso", term_path %>

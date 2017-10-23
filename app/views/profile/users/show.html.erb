@@ -1,3 +1,9 @@
+<% content_for :meta_title, "#{@user.artistic_name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @user.description %>
+<% if @banner_makes.present? %>
+<% content_for :meta_image, cloudinary_url(@banner_makes.last.images.first.image_url) %>
+<% end %>
+
 <div class="user-presentation">
   <div class="container">
     <div class="row">
@@ -15,7 +21,7 @@
           <% if @user.address.present? %>
             <p>
               <i class="fa fa-map-marker" aria-hidden="true"></i>
-              @user.address.city
+              <%= @user.address.city %>
             </p>
           <% end %>
           <p>
@@ -30,7 +36,7 @@
 
       <div class="col-xs-12 col-md-6">
       <% if @banner_makes.present? %>
-        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.first.images.first.image_url %>')">
+        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.last.images.first.image_url %>')">
       <% else %>
         <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1506952723/ft_vbnfou.jpg')">
       <% end %>
@@ -45,18 +51,14 @@
           </div>
         </div>
         <div class="user-contact">
-
-          <% if  current_user && @user == current_user %>
-
-
-            <button type="button" class="btn btn-user hidden-xs" onclick="">
-              <%= link_to "Criar nova make", new_profile_make_path %>
-            </button>
+          <% if current_user %>
+            <% if  current_user && @user == current_user %>
+              <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user hidden-xs"%>
+            <% else %>
+              <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
+            <% end %>
           <% else %>
-
-            <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
-
-
+            <%= link_to "Fale comigo!", new_user_session_path, :class => "btn btn-user hidden-xs" %>
           <% end %>
 
           <div class="shared-buttons">
@@ -98,6 +100,5 @@
   </div>
 </div> <!-- End: .user-makes -->
 
-<%= render 'shared/budget_modal' %>
 
 

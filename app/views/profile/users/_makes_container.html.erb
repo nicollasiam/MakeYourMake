@@ -68,17 +68,37 @@
               <% end %>
             </li>
           </ul>
-        <% end %>
-        <%= link_to make_path(make) do %>
-          <% if make.images.length > 0 %>
-            <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
-          <% else %>
-            <div class="make-img" style="background-color: #999999;">
+          <%= link_to make_path(make) do %>
+            <% if make.images.length > 0 %>
+              <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+            <% else %>
+              <div class="make-img" style="background-color: #999999;">
+            <% end %>
+            <!-- Icon indicating if make is visible or not -->
+              <div class="public-show">
+                <% if make.public %>
+                  <i class="fa fa-eye" aria-hidden="true" title="Make pública"></i>
+                <% else %>
+                  <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
+                <% end %>
+              </div>
+              <div class="user-make-text">
+                <%= make.name %>
+              </div>
+            </div> <!-- End: .make-img -->
           <% end %>
-            <div class="user-make-text">
-              <%= make.name %>
-            </div>
-          </div> <!-- End: .make-img -->
+        <% else %>
+          <%= link_to make_path(make) do %>
+            <% if make.images.length > 0 %>
+              <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+            <% else %>
+              <div class="make-img" style="background-color: #999999;">
+            <% end %>
+                <div class="user-make-text">
+                  <%= make.name %>
+                </div>
+              </div> <!-- End: .make-img -->
+          <% end %>
         <% end %>
       </div> <!-- End: .user-make-card -->
     </div> <!-- End: .col-xs-12 .col-md-4 -->

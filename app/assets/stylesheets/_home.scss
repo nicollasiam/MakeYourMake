@@ -11,6 +11,18 @@
   }
 }
 
+@media only screen and (max-width: 571px) {
+  .form-group {
+  width: 95%;
+  color: rgb(0, 4, 10);
+    input {
+      width: inherit;
+      margin-left: 5px;
+    }
+  }
+}
+
+
 .navbar-form {
   color: white;
   display: flex;

@@ -15,7 +15,7 @@
           <% if @user.telephone_number.present? %>
             <p>
               <i class="fa fa-phone" aria-hidden="true"></i>
-              <%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %>
+              (<%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %>
             </p>
           <% end %>
           <% if @user.address.present? %>
@@ -105,5 +105,5 @@
 </div> <!-- End: .user-makes -->
 
 
-
+<!-- Modal de login -->
 <%= render "shared/login" %>

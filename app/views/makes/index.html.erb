@@ -1,14 +1,8 @@
 
-<% if user_signed_in? %>
+<% unless user_signed_in? %>
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg');">
     <div class="content-text">
-      <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
-    </div>
-  </div>
-<% else %>
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1507038701/hand-brush-finger-brown-care-powder-1349205-pxhere.com_npk76h.jpg');">
-    <div class="content-text">
-      <h2><i>Divulgue e Inspire-se nas Makes</i></h2>
+      <h2><i>Divulgue e inspire-se nas Makes</i></h2>
       <p>Crie a sua conta e começe agora!</p>
       <%= link_to new_user_registration_path, class: "btn-user-index" do %>
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -62,7 +56,7 @@
                   <div class="card-information">
                     <div class="make-content-text">
                       <h4><%= make.name %></h4>
-                      <p>Conhece a <strong><%= link_to make.user.artistic_name, profile_user_path(make.user.id)%></strong></p>
+                      <p>Conheça a <strong><%= link_to make.user.artistic_name, profile_user_path(make.user.id)%></strong></p>
                     </div>
                     <% if make_is_liked_by_user?(make) %>
                       <%= link_to '#', class: 'unlike_button', 'data-id': make.id do %>
@@ -158,7 +152,7 @@
     <% end %>
     <div class="row">
       <% @top_makes.each do |top_make| %>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-lg-4 top-makes-wrapper">
           <div class="make-card">
             <%= link_to make_path(top_make) do %>
               <div class="make-img" style="background-image: url('<%= cl_image_path top_make.images.first.image_url %>')"></div>
@@ -181,7 +175,7 @@
               <div class="card-information">
                 <div class="make-content-text">
                   <h4><%= top_make.name %></h4>
-                  <p>Conhece a <strong><%= link_to top_make.user.artistic_name, profile_user_path(top_make.user.id)%></strong></p>
+                  <p>Conheça a <strong><%= link_to top_make.user.artistic_name, profile_user_path(top_make.user.id)%></strong></p>
                 </div>
                 <% if current_user  %>
                   <% if make_is_liked_by_user?(top_make) %>
@@ -207,4 +201,6 @@
   </div>
 </div>
 
+
+<!-- Modal de login -->
 <%= render "shared/login" %>

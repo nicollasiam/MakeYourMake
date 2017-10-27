@@ -1,7 +1,7 @@
 <div class="user-attributes-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
+      <div class="col-xs-12">
         <div class="user-attributes-inner-wrapper">
           <h2>Faça parte do MakeYourMake</h2>
           <p>Após o cadastro você já poderá postar as suas fotos</p>
@@ -19,8 +19,8 @@
             <% end %>
 
             <div class="form-inputs">
-              <%= f.input :first_name, required: true, autofocus: true, label: 'Nome', wrapper_html: { class: 'col-xs-5' }, error: false %>
-              <%= f.input :last_name, required: true, label: 'Sobrenome', wrapper_html: { class: 'col-xs-7' }, error: false %>
+              <%= f.input :first_name, required: true, autofocus: true, label: 'Nome', wrapper_html: { class: 'col-xs-6' }, error: false %>
+              <%= f.input :last_name, required: true, label: 'Sobrenome', wrapper_html: { class: 'col-xs-6' }, error: false %>
               <%= f.input :email, required: true, wrapper_html: { class: 'col-xs-12' }, error: false %>
               <%= f.input :password, required: true, label: 'Senha', hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length), wrapper_html: {class: 'col-xs-6' }, error: false, error: false %>
               <%= f.input :password_confirmation, required: true, label: 'Repetir senha', wrapper_html: { class: 'col-xs-6' }, error: false %>
@@ -61,7 +61,7 @@
             <div class="submit-input col-xs-12">
               <%= f.button :submit, "Cadastrar" %>
             </div>
-            <div class="submit-input col-xs-12">
+            <div class="access-links col-xs-12">
               <%= render "devise/shared/links" %>
             </div>
 

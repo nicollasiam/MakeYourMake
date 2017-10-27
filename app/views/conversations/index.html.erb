@@ -21,8 +21,10 @@
             <% end %>
             <% if  recipient.artistic_name.length > 17 %>
               <%= recipient.artistic_name[0..15]+"..." %>
-            <% else %>
+            <% elsif recipient.artistic_name.length > 0 %>
               <%= recipient.artistic_name %>
+            <% else %>
+              <%= recipient.first_name %>
             <% end %>
 
 

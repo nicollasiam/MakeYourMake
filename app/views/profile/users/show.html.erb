@@ -7,55 +7,39 @@
 <div class="user-presentation">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6 position-for-make-user">
-        <div class="user-information">
-          <h3><strong><%= @user.artistic_name %></strong></h3>
-          <p><i class="fa fa-envelope-o" aria-hidden="true"></i>
-          <%= @user.email %></p>
-          <% if @user.telephone_number.present? %>
-            <p>
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %>
-            </p>
-          <% end %>
-          <% if @user.address.present? %>
-            <p>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <%= @user.address.city %>
-            </p>
-          <% end %>
-          <p>
-            <i class="fa fa-comment-o" aria-hidden="true"></i>
-            <%= @user.description %>
-          </p>
-        </div>
-        <div class="make-user">
-          <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
-        </div>
-      </div>
-
       <div class="col-xs-12 col-md-6">
-      <% if @banner_makes.present? %>
-        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.last.images.first.image_url %>')">
-      <% else %>
-        <div class="banner-user" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1506952723/ft_vbnfou.jpg')">
-      <% end %>
-          <div class="banner-content">
-            <div class="banner-user-description">
-              <%= @user.artistic_name %>
-            </div>
-            <div class="banner-user-likes">
-              <p><i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= @user.liked_makes.count %></p>
-            </div>
+        <div class="position-for-make-user">
+          <div class="user-information">
+            <h3><strong><%= @user.artistic_name %></strong></h3>
+            <p><i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <%= @user.email %></p>
+            <% if @user.telephone_number.present? %>
+              <p>
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                (<%= @user.telephone_number.ddd %>) - <%= @user.telephone_number.number %>
+              </p>
+            <% end %>
+            <% if @user.address.present? %>
+              <p>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <%= @user.address.city %>
+              </p>
+            <% end %>
+            <p class="user-description">
+              <i class="fa fa-comment-o" aria-hidden="true"></i>
+              <%= @user.description %>
+            </p>
+          </div>
+          <div class="make-user">
+            <%= image_tag 'http://res.cloudinary.com/dzvhno4wr/image/upload/c_scale,w_80/v1506956917/placeholder_vhw9ur.png' %>
           </div>
         </div>
         <div class="user-contact">
           <% if current_user %>
             <% if  current_user && @user == current_user %>
-              <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user hidden-xs"%>
+              <%= link_to "Criar nova make", new_profile_make_path, class: "btn btn-user"%>
             <% else %>
-              <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user hidden-xs" %>
+              <%= link_to "Fale comigo!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', :class => "btn btn-user" %>
             <% end %>
           <% else %>
             <%= link_to '#', "data-toggle" => "modal", 'data-target' => "#email", id: "contact" do%>
@@ -69,7 +53,7 @@
             <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, class: "fb-share"  do %>
             <i class="fa fa-facebook-square" aria-hidden="true"></i>
             <% end %>
-            <%= link_to "whatsapp://send?text=" + request.original_url do %>
+            <%= link_to "whatsapp://send?text=" + request.original_url, :"data-action" => "share/whatsapp/share", :class => "whatsapp-share" do %>
               <i class="fa fa-whatsapp" aria-hidden="true"></i>
             <% end %>
             <%= link_to "https://twitter.com/intent/tweet" + request.original_url, class: "twitter-share-button"  do %>
@@ -77,6 +61,24 @@
             <% end %>
           </div>
         </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+      <% if @banner_makes.present? %>
+        <div class="banner-user hidden-xs" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path @banner_makes.last.images.first.image_url %>')">
+      <% else %>
+        <div class="banner-user hidden-xs" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('http://res.cloudinary.com/dzvhno4wr/image/upload/v1506952723/ft_vbnfou.jpg')">
+      <% end %>
+          <div class="banner-content">
+            <div class="banner-user-description">
+              <%= @user.artistic_name %>
+            </div>
+            <div class="banner-user-likes">
+              <p><i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @user.liked_makes.count %></p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -105,5 +107,5 @@
 </div> <!-- End: .user-makes -->
 
 
-
+<!-- Modal de login -->
 <%= render "shared/login" %>

@@ -3,13 +3,18 @@
 }
 
 .form-group {
-  width: 320px;
   color: rgb(0, 4, 10);
   input {
     width: inherit;
-    margin-left: 5px;
   }
 }
+
+@media only screen and (max-width: 571px) {
+  .form-group {
+  width: 95%;
+  }
+}
+
 
 .navbar-form {
   color: white;
@@ -17,4 +22,8 @@
   justify-content: center;
   align-items: center;
   border: 0;
+}
+
+.general-search {
+  width: 300px;
 }

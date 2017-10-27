@@ -1,14 +1,10 @@
 <% makes.each do |make| %>
   <!-- Show non public makes only if current user is the make's owner -->
   <% if make.user == current_user && !make.public %>
-    <%= render partial: "shared/make_modal", locals: { make: make } %>
     <div class="col-xs-12 col-md-4">
       <div class="user-make-card">
         <!-- Show make information to the owner -->
         <ul class="list-inline text-center">
-          <li> <!-- Icon indicating if make is visible or not -->
-            <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
-          </li>
           <li> <!-- Link to add image -->
             <%= link_to new_make_image_path(make) do %>
               <i class="fa fa-file-image-o" aria-hidden="true" title="Adicionar Imagem"></i>
@@ -25,38 +21,37 @@
             <% end %>
           </li>
         </ul>
-
-        <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
+        <%= link_to make_path(make) do %>
           <% if make.images.length > 0 %>
             <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
           <% else %>
             <div class="make-img" style="background-color: #999999;">
           <% end %>
+          <!-- Icon indicating if make is visible or not -->
+            <div class="public-show">
+              <% if make.public %>
+                <i class="fa fa-eye" aria-hidden="true" title="Make pública"></i>
+              <% else %>
+                <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
+              <% end %>
+            </div>
             <div class="user-make-text">
               <%= make.name %>
             </div>
           </div>
-        </a>
+        <% end %>
       </div>
     </div>
 
   <!-- if current user is not the make's owner, only show public makes -->
   <!-- Show these makes also to the owner -->
   <% elsif make.public %>
-    <%= render partial: "shared/make_modal", locals: { make: make } %>
 
     <div class="col-xs-12 col-md-4">
       <div class="user-make-card">
         <% if make.user == current_user %>
           <!-- Show make information to the owner -->
           <ul class="list-inline text-center">
-            <li> <!-- Icon indicating if make is visible or not -->
-              <% if make.public %>
-                <i class="fa fa-eye" aria-hidden="true" title="Make pública"></i>
-              <% else %>
-                <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
-              <% end %>
-            </li>
             <li> <!-- Link to add image -->
               <%= link_to new_make_image_path(make) do %>
                 <i class="fa fa-file-image-o" aria-hidden="true" title="Adicionar Imagem"></i>
@@ -73,19 +68,38 @@
               <% end %>
             </li>
           </ul>
-        <% end %>
-
-        <a data-toggle="modal" data-target="#makemodal<%= make.id  %>">
-          <% if make.images.length > 0 %>
-            <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
-          <% else %>
-            <div class="make-img" style="background-color: #999999;">
+          <%= link_to make_path(make) do %>
+            <% if make.images.length > 0 %>
+              <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+            <% else %>
+              <div class="make-img" style="background-color: #999999;">
+            <% end %>
+            <!-- Icon indicating if make is visible or not -->
+              <div class="public-show">
+                <% if make.public %>
+                  <i class="fa fa-eye" aria-hidden="true" title="Make pública"></i>
+                <% else %>
+                  <i class="fa fa-eye-slash" aria-hidden="true" title="Make não pública"></i>
+                <% end %>
+              </div>
+              <div class="user-make-text">
+                <%= make.name %>
+              </div>
+            </div> <!-- End: .make-img -->
           <% end %>
-            <div class="user-make-text">
-              <%= make.name %>
-            </div>
-          </div> <!-- End: .make-img -->
-        </a>
+        <% else %>
+          <%= link_to make_path(make) do %>
+            <% if make.images.length > 0 %>
+              <div class="make-img" style="background-image: linear-gradient(transparent 34%, rgba(0,0,0,0.36) 57%, rgba(0,0,0,0.74) 81%, rgba(0,0,0,.9) 100%), url('<%= cl_image_path make.images.first.image_url %>');">
+            <% else %>
+              <div class="make-img" style="background-color: #999999;">
+            <% end %>
+                <div class="user-make-text">
+                  <%= make.name %>
+                </div>
+              </div> <!-- End: .make-img -->
+          <% end %>
+        <% end %>
       </div> <!-- End: .user-make-card -->
     </div> <!-- End: .col-xs-12 .col-md-4 -->
   <% end %>

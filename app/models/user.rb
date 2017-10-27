@@ -109,6 +109,8 @@ class User < ApplicationRecord
     else
       user = User.new(user_params)
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.build_address
+      user.build_telephone_number
       user.save
     end
 
